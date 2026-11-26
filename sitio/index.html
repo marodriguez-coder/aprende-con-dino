@@ -256,6 +256,53 @@ body.connav .app{padding-bottom:96px}
 .prod.tv .meta{background:rgba(255,255,255,.2)}
 .meta i{display:block;height:100%;border-radius:99px;background:#ffb020}
 .cab{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+
+/* --- v1.5: tienda dinámica con Dino tutor --- */
+.dino-tutor{display:flex;align-items:flex-end;gap:10px}
+.dino-tutor img{width:58px;height:58px;border-radius:50%;border:3px solid var(--naranja);flex:none;animation:charla 1.4s ease-in-out infinite alternate}
+.dino-tutor .bubble{flex:1;border-bottom-left-radius:6px;font-size:.93rem}
+.ayuda-btn{width:38px;height:38px;padding:0!important;border-radius:50%!important;font-size:1rem!important;flex:none}
+.meta-card{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#3917a8,#5b46e0);color:#fff;border-radius:22px;padding:14px}
+.meta-card .ico{width:64px;height:64px;flex:none}
+.meta-card b{display:block;font-size:1.1rem;margin:2px 0 8px}
+.meta-card .meta{background:rgba(255,255,255,.2);margin-bottom:6px}
+.meta-card small{opacity:.85}
+.lista{display:flex;flex-direction:column;gap:14px}
+.prod2{display:flex;gap:14px;border-radius:24px;padding:14px;background:var(--ink);color:#231f1c;box-shadow:0 8px 0 rgba(0,0,0,.18);animation:aparece .45s cubic-bezier(.2,1.2,.4,1) both;position:relative}
+@keyframes aparece{from{transform:translateY(18px) scale(.97);opacity:0}}
+.prod2 .ico{width:84px;height:84px;flex:none;align-self:center;border-radius:20px;display:grid;place-items:center;background:#f0e9e2}
+.prod2 .ico svg{width:72px;height:72px;transition:transform .3s}
+.prod2:hover .ico svg{transform:rotate(-6deg) scale(1.08)}
+.prod2 .info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.prod2 h3{font-family:var(--body);text-transform:none;font-size:1.08rem;font-weight:700}
+.prod2 .muted{color:#6b635c;font-size:.88rem}
+.prod2 .aliado{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#c43d12}
+.prod2 .precio{display:inline-flex;align-items:center;gap:5px;background:#231f1c;color:#fff;border-radius:999px;padding:3px 10px;font-weight:700;font-size:.85rem;white-space:nowrap}
+.prod2 .btn{align-self:flex-start;font-size:.95rem;padding:9px 16px;box-shadow:none;background:#231f1c;color:#fff}
+.prod2 .btn[disabled]{background:#ddd5cd;color:#8a827b}
+.prod2 .btn.sec{background:transparent;color:#231f1c;border-color:#231f1c}
+.prod2 .meta{background:#e7dfd7}
+.prod2.t-premio{background:linear-gradient(160deg,#2a1380,#5b46e0);color:#fff;flex-direction:column}
+.prod2.t-premio .ico{width:100%;height:120px;background:radial-gradient(circle at 50% 60%,rgba(255,176,32,.35),transparent 70%)}
+.prod2.t-premio .ico svg{width:150px;height:120px}
+.prod2.t-premio .muted{color:#d6ccff}.prod2.t-premio .aliado{color:#ffb020}
+.prod2.t-premio .precio{background:#ffb020;color:#3a2400}
+.prod2.t-premio .btn{background:#ffb020;color:#3a2400}.prod2.t-premio .btn[disabled]{background:rgba(255,255,255,.16);color:#d6ccff}
+.prod2.t-premio .meta{background:rgba(255,255,255,.2)}
+.prod2.t-guia .ico{background:#e4ebff}.prod2.t-ayuda .ico{background:#e9f6e4}
+.prod2.tengo{opacity:.8}
+.prod2.canjeado{animation:canje .65s ease-in forwards}
+@keyframes canje{30%{transform:scale(1.04)}100%{transform:scale(.9) translateY(-14px);opacity:.3}}
+.estrella{background:none;border:0;font-size:1.4rem;line-height:1;color:#c9a227;padding:0 2px}
+.prod2.t-premio .estrella{color:#ffb020}
+#tourCapa{position:fixed;inset:0;z-index:30;background:rgba(10,8,6,.82);display:flex;align-items:flex-end;justify-content:center;padding:16px 16px calc(90px + env(safe-area-inset-bottom));animation:baja .2s}
+.tour-caja{width:min(428px,100%);display:flex;flex-direction:column;gap:6px}
+.tour-caja>img{height:96px;width:auto;align-self:flex-start;margin-left:6px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5));animation:entra .4s both;order:2}
+.tour-caja>div{order:1}
+.tour-caja .bubble{font-size:1rem;border-bottom-left-radius:6px}
+.tour-pie{display:flex;align-items:center;gap:8px;margin-top:10px;color:#fff}
+.tour-pie small{margin-right:auto;white-space:nowrap}.tour-pie .btn{font-size:.9rem;padding:8px 14px}
+.tour-luz{position:relative;z-index:31;box-shadow:0 0 0 4px #ffb020,0 0 0 9999px rgba(0,0,0,0)!important;border-radius:22px}
 </style>
 </head>
 <body>
@@ -267,7 +314,7 @@ body.connav .app{padding-bottom:96px}
     <div id="menu" class="menu" hidden></div>
   </header>
   <main id="v"></main>
-  <footer>MVP v1.4.0 · 26/11/2026 · MandarinaTec</footer>
+  <footer>MVP v1.5.0 · 26/11/2026 · MandarinaTec</footer>
 </div>
 <div id="hoja" hidden role="dialog" aria-label="Detalle"></div>
 <nav id="nav" hidden aria-label="Secciones"><div>
@@ -376,56 +423,131 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")cierraHoja()});
 const MON_CH=MONEDA.replace('class="moneda"','class="moneda" style="width:16px;height:16px;vertical-align:-3px"');
 
 /* ---------- Tienda ---------- */
-let TAB="premios", PREMIOS=[], SOLIC=new Set();
-const TV_SVG='<svg viewBox="0 0 96 70" width="96" height="70" aria-hidden="true"><rect x="4" y="4" width="88" height="52" rx="7" fill="#1f1f22"/><rect x="10" y="10" width="76" height="40" rx="3" fill="#7cc8ff"/><path d="M10 40 34 22l16 12 12-8 24 18v6H10z" fill="#5b46e0" opacity=".55"/><rect x="34" y="58" width="28" height="5" rx="2.5" fill="#fff"/></svg>';
+let TAB="premios", PREMIOS=[], SOLIC=new Set(), RITMO=null;
 const num0=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,".");
+const lsG=k=>{try{return localStorage.getItem(k)}catch(e){return null}}, lsS=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
+/* Íconos ilustrados con volumen */
+const ICONOS={
+ tv:`<svg viewBox="0 0 120 100" aria-hidden="true"><defs><linearGradient id="gtv1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3a40"/><stop offset="1" stop-color="#121214"/></linearGradient><linearGradient id="gtv2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset=".55" stop-color="#5b46e0"/><stop offset="1" stop-color="#fc5e31"/></linearGradient></defs>
+   <ellipse cx="60" cy="94" rx="36" ry="4" fill="#000" opacity=".25"/><path d="M44 78h32l5 12H39z" fill="#2a2a2e"/><rect x="4" y="6" width="112" height="72" rx="9" fill="url(#gtv1)"/><rect x="10" y="12" width="100" height="60" rx="4" fill="url(#gtv2)"/>
+   <path d="M10 56 38 34l18 14 16-10 38 24v10H10z" fill="#fff" opacity=".18"/><circle cx="88" cy="28" r="8" fill="#ffd84a" opacity=".9"/><path d="M14 16h40L22 68h-8z" fill="#fff" opacity=".14"/><circle cx="60" cy="75" r="1.6" fill="#6ac460"/></svg>`,
+ guia:c=>`<svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gg${c}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="#1b2f8a"/></linearGradient></defs>
+   <ellipse cx="52" cy="92" rx="32" ry="4" fill="#000" opacity=".22"/><path d="M22 14h52a8 8 0 0 1 8 8v62H30a8 8 0 0 1-8-8z" fill="url(#gg${c})"/><path d="M22 76a8 8 0 0 1 8-8h52v16H30a8 8 0 0 1-8-8z" fill="#f6f1ec"/>
+   <path d="M30 72h48M30 77h44" stroke="#c9c0b6" stroke-width="1.5"/><rect x="34" y="26" width="36" height="22" rx="4" fill="#fff" opacity=".9"/><path d="M40 33h24M40 40h16" stroke="#2054e5" stroke-width="3" stroke-linecap="round"/>
+   <path d="M64 14v22l6-4 6 4V14z" fill="#fc5e31"/><path d="M26 18h4v46h-4z" fill="#fff" opacity=".18"/></svg>`,
+ pista:`<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="gp" cx=".4" cy=".35"><stop offset="0" stop-color="#fff6b8"/><stop offset=".6" stop-color="#ffd23f"/><stop offset="1" stop-color="#e8a412"/></radialGradient></defs>
+   <circle cx="50" cy="40" r="34" fill="#ffd84a" opacity=".22"/><path d="M50 12a26 26 0 0 0-15 47c3 2 5 6 5 10v3h20v-3c0-4 2-8 5-10a26 26 0 0 0-15-47z" fill="url(#gp)"/>
+   <rect x="39" y="74" width="22" height="7" rx="3" fill="#8a8f99"/><rect x="41" y="82" width="18" height="6" rx="3" fill="#6b7079"/><path d="M44 50l6-10 6 10" stroke="#e8a412" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="40" cy="28" rx="6" ry="9" fill="#fff" opacity=".55" transform="rotate(-25 40 28)"/></svg>`,
+ segunda:`<svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fdc72"/><stop offset="1" stop-color="#2f8a2a"/></linearGradient></defs>
+   <ellipse cx="50" cy="92" rx="30" ry="4" fill="#000" opacity=".22"/><circle cx="50" cy="48" r="38" fill="url(#gs)"/><path d="M50 26a22 22 0 1 1-21 15" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M22 30l8 13 13-7z" fill="#fff"/><ellipse cx="36" cy="26" rx="12" ry="6" fill="#fff" opacity=".3" transform="rotate(-30 36 26)"/></svg>`,
+ secreto:`<svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#c98a12"/></linearGradient></defs>
+   <ellipse cx="50" cy="92" rx="30" ry="4" fill="#000" opacity=".22"/><circle cx="34" cy="38" r="22" fill="url(#gk)"/><circle cx="34" cy="38" r="9" fill="#5b46e0"/><path d="M50 50l34 34" stroke="url(#gk)" stroke-width="11" stroke-linecap="round"/><path d="M70 70l8-8M78 78l8-8" stroke="#c98a12" stroke-width="7" stroke-linecap="round"/><ellipse cx="26" cy="28" rx="7" ry="4" fill="#fff" opacity=".5" transform="rotate(-35 26 28)"/></svg>`,
+ protector:`<svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gpr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f73f2"/><stop offset="1" stop-color="#3917a8"/></linearGradient><linearGradient id="gfl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd84a"/><stop offset="1" stop-color="#fc5e31"/></linearGradient></defs>
+   <ellipse cx="50" cy="93" rx="28" ry="4" fill="#000" opacity=".22"/><path d="M50 8l34 12v26c0 22-15 36-34 44C31 82 16 68 16 46V20z" fill="url(#gpr)"/><path d="M50 8v82C31 82 16 68 16 46V20z" fill="#fff" opacity=".1"/>
+   <path d="M50 30c8 9 13 15 13 23a13 13 0 0 1-26 0c0-5 3-9 6-12 0 5 2 8 5 8-2-7 0-13 2-19z" fill="url(#gfl)"/></svg>`
+};
+const iconoDe=x=>x.tipo==="premio"?ICONOS.tv:x.tipo==="guia"?ICONOS.guia("#4f7bff"):ICONOS[{pista:"pista",segunda:"segunda",nivel_secreto:"secreto",protector:"protector"}[x.codigo]]||ICONOS.pista;
+
+/* Catálogo unificado */
+function catalogo(){
+  return [...PREMIOS.map(x=>({tipo:"premio",codigo:x.codigo,nombre:x.nombre,desc:x.descripcion,costo:x.costo,aliado:x.aliado,tengo:SOLIC.has(x.codigo)})),
+          ...GUIAS.map(g=>({tipo:"guia",codigo:g.codigo,nombre:g.titulo,desc:g.resumen,costo:g.costo,tengo:MIAS.has(g.codigo),cofre:COFRES.some(c=>c.guia_codigo===g.codigo&&!ABIERTOS.has(c.id))})),
+          ...RECOMP.map(r=>({tipo:"ayuda",codigo:r.codigo,nombre:r.nombre,desc:r.descripcion,costo:r.costo}))];
+}
+const META=()=>{const m=lsG("mt_meta");return m?catalogo().find(x=>x.tipo+":"+x.codigo===m&&!x.tengo):null};
+const diasPara=c=>{const f=Math.max(0,c-P.mandarinas);return f?Math.ceil(f/(RITMO||40)):0};
+async function calcRitmo(){ // promedio ganado por día activo en las últimas 2 semanas
+  const d=new Date(HOY+"T12:00:00");d.setDate(d.getDate()-14);
+  const {data}=await sb.from("intentos").select("dia,puntos").gte("dia",d.toISOString().slice(0,10));
+  const por={};(data||[]).forEach(x=>por[x.dia]=(por[x.dia]||0)+x.puntos);
+  const v=Object.values(por).filter(x=>x>0);RITMO=v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):40;
+}
+function consejo(){
+  const cat=catalogo().filter(x=>!x.tengo&&x.tipo!=="ayuda"), meta=META();
+  if(meta){const f=meta.costo-P.mandarinas;return f<=0?`¡Ya te alcanza para <b>${esc(meta.nombre)}</b>! Canjéalo cuando quieras.`
+    :`Vas por <b>${esc(meta.nombre)}</b>. Te faltan ${num0(f)}: a tu ritmo, unos ${diasPara(meta.costo)} ${diasPara(meta.costo)===1?"día":"días"}.`}
+  const ok=cat.filter(x=>x.costo<=P.mandarinas).sort((a,b)=>b.costo-a.costo)[0];
+  if(ok)return `Con tu saldo ya puedes canjear <b>${esc(ok.nombre)}</b>. ¿La marcamos como tu meta o la canjeas ya?`;
+  const cerca=cat.sort((a,b)=>a.costo-b.costo)[0];
+  return cerca?`Lo más cercano es <b>${esc(cerca.nombre)}</b>: te faltan ${num0(cerca.costo-P.mandarinas)}. Elige una meta con la estrella y te aviso cuánto falta.`
+              :"Ya tienes todo lo disponible. Pronto llegan más premios.";
+}
+
 function vTienda(msg){
   setNav("tienda");stats();
-  const sec=RETOS.filter(r=>r.tipo==="secreto"&&!DESB.has(r.orden));
+  if(RITMO===null)calcRitmo().then(()=>{if($("#consejo"))$("#consejo").innerHTML=consejo()});
+  const sec=RETOS.filter(r=>r.tipo==="secreto"&&!DESB.has(r.orden)), meta=META(), lista=catalogo().filter(x=>x.tipo===({premios:"premio",guias:"guia",ayudas:"ayuda"})[TAB]);
   const precio=c=>`<span class="precio">${MON_CH} ${num0(c)}</span>`;
-  let cuerpo="";
-  if(TAB==="premios"){
-    cuerpo=PREMIOS.map(x=>{const ya=SOLIC.has(x.codigo), pct=Math.min(100,Math.round(P.mandarinas/x.costo*100));
-      return `<div class="prod tv"><div class="cab"><div><div class="eyebrow" style="color:#ffb020">Premio de ${esc(x.aliado)}</div><h3 style="font-size:1.5rem">${esc(x.nombre)}</h3></div>${TV_SVG}</div>
-        <p class="muted">${esc(x.descripcion)}</p>
-        <div class="meta"><i style="width:${ya?100:pct}%"></i></div>
-        <div class="cab"><span>${ya?"Solicitud enviada":`Tienes <b>${num0(P.mandarinas)}</b> de ${num0(x.costo)}`}</span>${precio(x.costo)}</div>
-        ${ya?`<p class="muted">El equipo te contactará por correo para coordinar la entrega.</p>`
-          :ANON?`<p class="muted">Guarda tu cuenta desde Perfil para poder canjear premios.</p>`
-          :`<button class="btn" data-p="${x.codigo}" ${P.mandarinas<x.costo?"disabled":""}>${P.mandarinas<x.costo?`Te faltan ${num0(x.costo-P.mandarinas)}`:"Canjear premio"}</button>`}</div>`}).join("")
-      ||dino("Pronto habrá premios de nuestros aliados.");
-  }else if(TAB==="guias"){
-    cuerpo=GUIAS.map(g=>`<div class="prod" style="--k:#2054e5"><div class="cab"><h3>${esc(g.titulo)}</h3>${precio(g.costo)}</div><span class="muted">${esc(g.resumen)}</span>
-       ${MIAS.has(g.codigo)?`<button class="btn sec" data-lee="${g.codigo}">Ya es tuya · Leer</button>`
-         :`<button class="btn" data-g="${g.codigo}" ${P.mandarinas<g.costo?"disabled":""}>Canjear</button>${COFRES.some(c=>c.guia_codigo===g.codigo)?`<span class="muted">También sale gratis en un cofre del mapa.</span>`:""}`}</div>`).join("")
-      ||dino("Las guías todavía no están cargadas.");
-  }else{
-    cuerpo=RECOMP.map(r=>`<div class="prod" style="--k:#3f9a37"><div class="cab"><h3>${esc(r.nombre)}</h3>${precio(r.costo)}</div><span class="muted">${esc(r.descripcion)}</span>
-       ${r.codigo==="protector"?`<button class="btn" data-c="protector" ${P.mandarinas<r.costo||P.protectores>=2?"disabled":""}>Canjear</button>${P.protectores?`<span class="muted">Tienes ${P.protectores} guardados.</span>`:""}`
-        :r.codigo==="nivel_secreto"?(sec.length?sec.map(x=>`<button class="btn" data-c="nivel_secreto" data-r="${x.orden}" ${P.mandarinas<r.costo?"disabled":""}>Abrir «${esc(x.titulo)}»</button>`).join(""):`<span class="muted">Ya abriste todos los niveles secretos.</span>`)
-        :`<span class="muted"><b>Se usa dentro de un reto,</b> al responder una pregunta.</span>`}</div>`).join("")+
-     `<section class="card"><div class="eyebrow">Cómo ganar mandarinas</div>
+  const accion=x=>{
+    if(x.tipo==="premio") return x.tengo?`<p class="muted">Solicitud enviada. El equipo te contactará por correo.</p>`
+      :ANON?`<p class="muted">Guarda tu cuenta desde Perfil para canjear premios.</p>`
+      :`<button class="btn" data-p="${x.codigo}" ${P.mandarinas<x.costo?"disabled":""}>${P.mandarinas<x.costo?`Te faltan ${num0(x.costo-P.mandarinas)}`:"Canjear premio"}</button>`;
+    if(x.tipo==="guia") return x.tengo?`<button class="btn sec" data-lee="${x.codigo}">Ya es tuya · Leer</button>`
+      :`<button class="btn" data-g="${x.codigo}" ${P.mandarinas<x.costo?"disabled":""}>Canjear</button>${x.cofre?`<span class="muted">También sale gratis en un cofre del mapa.</span>`:""}`;
+    if(x.codigo==="protector") return `<button class="btn" data-c="protector" ${P.mandarinas<x.costo||P.protectores>=2?"disabled":""}>Canjear</button>${P.protectores?`<span class="muted">Tienes ${P.protectores} guardados.</span>`:""}`;
+    if(x.codigo==="nivel_secreto") return sec.length?sec.map(r=>`<button class="btn" data-c="nivel_secreto" data-r="${r.orden}" ${P.mandarinas<x.costo?"disabled":""}>Abrir «${esc(r.titulo)}»</button>`).join(""):`<span class="muted">Ya abriste todos los niveles secretos.</span>`;
+    return `<span class="muted"><b>Se usa dentro de un reto,</b> al responder una pregunta.</span>`;
+  };
+  const tarjeta=(x,k)=>{const pct=Math.min(100,Math.round(P.mandarinas/x.costo*100)), esMeta=meta&&meta.tipo===x.tipo&&meta.codigo===x.codigo, puedeMeta=x.tipo!=="ayuda"&&!x.tengo;
+    return `<article class="prod2 t-${x.tipo} ${x.tengo?"tengo":""}" style="animation-delay:${k*70}ms">
+      <div class="ico">${iconoDe(x)}</div>
+      <div class="info">
+        <div class="cab">${x.aliado?`<span class="aliado">Premio de ${esc(x.aliado)}</span>`:`<span class="aliado">${{guia:"Guía",ayuda:"Ayuda"}[x.tipo]}</span>`}
+          ${puedeMeta?`<button class="estrella" data-meta="${x.tipo}:${x.codigo}" aria-pressed="${!!esMeta}" aria-label="${esMeta?"Quitar de mi meta":"Marcar como mi meta"}">${esMeta?"★":"☆"}</button>`:""}</div>
+        <h3>${esc(x.nombre)}</h3><p class="muted">${esc(x.desc)}</p>
+        ${x.tengo?"":`<div class="meta"><i style="width:${pct}%"></i></div><div class="cab"><small>${P.mandarinas>=x.costo?"Te alcanza":`${num0(P.mandarinas)} de ${num0(x.costo)}`}</small>${precio(x.costo)}</div>`}
+        ${accion(x)}</div></article>`};
+  V.innerHTML=`
+   <div class="saldo-card" id="tSaldo"><div><div style="font-weight:700">Tus mandarinas</div><b id="cuenta">0</b><span>Total ganado: ${num0(P.total_ganado)}</span></div><img src="dino-guia.webp" alt=""></div>
+   <div class="dino-tutor" id="tDino"><img src="dino-cara.webp" alt="Dino"><div class="bubble" id="consejo">${consejo()}</div><button class="btn sec ayuda-btn" id="tour" aria-label="Ver el recorrido de la tienda">?</button></div>
+   ${meta?`<div class="meta-card" id="tMeta"><div class="ico">${iconoDe(meta)}</div><div style="flex:1"><small>Tu meta</small><b>${esc(meta.nombre)}</b>
+      <div class="meta"><i style="width:${Math.min(100,Math.round(P.mandarinas/meta.costo*100))}%"></i></div>
+      <small>${P.mandarinas>=meta.costo?"¡Ya te alcanza!":`${num0(P.mandarinas)} de ${num0(meta.costo)} · unos ${diasPara(meta.costo)} días a tu ritmo`}</small></div></div>`:""}
+   <div class="tabs" role="tablist" id="tTabs">${[["premios","Premios"],["guias","Guías"],["ayudas","Ayudas"]].map(t=>`<button role="tab" data-tab="${t[0]}" aria-selected="${TAB===t[0]}">${t[1]}</button>`).join("")}</div>
+   <div id="msgT" class="err" role="status">${msg||""}</div>
+   <div class="lista">${lista.map(tarjeta).join("")||dino("Pronto habrá más cosas aquí.")}</div>
+   ${TAB==="ayudas"?`<section class="card"><div class="eyebrow">Cómo ganar mandarinas</div>
        <div class="fila"><span>Cada actividad sin errores</span><b>+10</b></div><div class="fila"><span>Reto práctico hecho</span><b>+20</b></div>
        <div class="fila"><span>Terminar un mundo</span><b>+20</b></div><div class="fila"><span>Cada 7 días de racha</span><b>+15</b></div>
        <div class="fila"><span>Cofres del mapa</span><b>+15 o una guía</b></div></section>
-      <section class="card"><div class="eyebrow">Historial de canjes</div><div id="hist"><p class="muted">Cargando…</p></div></section>`;
-  }
-  V.innerHTML=`
-   <div class="saldo-card"><div><div style="font-weight:700">Tus mandarinas</div><b>${num0(P.mandarinas)}</b><span>Total ganado: ${num0(P.total_ganado)}</span></div><img src="dino-guia.webp" alt=""></div>
-   <div class="tabs" role="tablist">${[["premios","Premios"],["guias","Guías"],["ayudas","Ayudas"]].map(t=>`<button role="tab" data-tab="${t[0]}" aria-selected="${TAB===t[0]}">${t[1]}</button>`).join("")}</div>
-   <div id="msgT" class="err" role="status">${msg||""}</div>
-   ${cuerpo}`;
+      <section class="card"><div class="eyebrow">Historial de canjes</div><div id="hist"><p class="muted">Cargando…</p></div></section>`:""}`;
+  // saldo que cuenta hacia arriba
+  const C=$("#cuenta"), fin=P.mandarinas;
+  if(QUIETO||fin<5)C.textContent=num0(fin); else {const t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/700);C.textContent=num0(Math.round(fin*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
   V.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{TAB=b.dataset.tab;vTienda()});
+  V.querySelectorAll("[data-meta]").forEach(b=>b.onclick=()=>{const v=b.dataset.meta;lsS("mt_meta",lsG("mt_meta")===v?null:v);vTienda(lsG("mt_meta")?"Meta guardada. Dino te dirá cuánto falta.":"")});
   const canje=(sel,fn,ok)=>V.querySelectorAll(sel).forEach(b=>b.onclick=async()=>{b.disabled=true;
-    try{await fn(b);lluvia(14);vTienda(ok(b))}catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
+    const card=b.closest(".prod2");
+    try{await fn(b);if(card){card.classList.add("canjeado");await new Promise(r=>setTimeout(r,QUIETO?0:650))}lluvia(22);
+        const m=lsG("mt_meta");if(m&&card&&card.querySelector(`[data-meta="${m}"]`))lsS("mt_meta",null);vTienda(ok(b))}
+    catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
   canje("[data-c]",b=>canjea(b.dataset.c,b.dataset.r?+b.dataset.r:null),b=>b.dataset.r?"Nivel secreto abierto. Juégalo desde el mapa.":"Listo, canjeado.");
   canje("[data-g]",async b=>{P=await rpc("canjear_guia",{p_codigo:b.dataset.g});MIAS.add(b.dataset.g)},()=>"Guía canjeada. Ya está en Mis guías.");
   canje("[data-p]",async b=>{P=await rpc("canjear_premio",{p_codigo:b.dataset.p});SOLIC.add(b.dataset.p)},()=>"Solicitud enviada. Te contactaremos por correo.");
   V.querySelectorAll("[data-lee]").forEach(b=>b.onclick=()=>vGuia(b.dataset.lee));
+  $("#tour").onclick=()=>tourTienda(0);
   if($("#hist"))sb.from("canjes").select("codigo,costo,creado").order("creado",{ascending:false}).limit(8).then(({data})=>{
     const H=$("#hist");if(!H)return;
     H.innerHTML=data&&data.length?data.map(h=>`<div class="fila"><span>${NOMBRE_CANJE[h.codigo]||h.codigo} · ${new Date(h.creado).toLocaleDateString("es")}</span><b>−${num0(h.costo)}</b></div>`).join(""):'<p class="muted">Todavía no canjeas nada.</p>'});
+  if(!lsG("mt_tour_tienda")&&!msg)setTimeout(()=>tourTienda(0),QUIETO?0:500);
   window.scrollTo(0,0);
+}
+/* Recorrido guiado por Dino (la primera vez) */
+const TOUR=[["#tSaldo","Estas son tus mandarinas. Las ganas al completar retos, mantener la racha y abrir cofres.","guia"],
+            ["#tTabs","Aquí canjeas: premios de aliados, guías para aprender más y ayudas para tus retos.","lupa"],
+            [".estrella","Toca la estrella de lo que más quieras y lo convierto en tu meta. Te diré cuántos días te faltan.","reto"]];
+function tourTienda(n){
+  const prev=document.querySelector(".tour-luz");if(prev)prev.classList.remove("tour-luz");
+  let O=$("#tourCapa");
+  if(n>=TOUR.length){if(O)O.remove();lsS("mt_tour_tienda","1");return}
+  const [sel,txt,pose]=TOUR[n], el=document.querySelector(sel);
+  if(!el)return tourTienda(n+1);
+  el.classList.add("tour-luz");el.scrollIntoView({block:"center",behavior:QUIETO?"auto":"smooth"});
+  if(!O){O=document.createElement("div");O.id="tourCapa";O.setAttribute("role","dialog");O.setAttribute("aria-label","Recorrido de la tienda");document.body.appendChild(O)}
+  O.innerHTML=`<div class="tour-caja"><img src="dino-${pose}.webp" alt="Dino"><div><div class="bubble" data-tw>${txt}</div>
+    <div class="tour-pie"><small>${n+1} de ${TOUR.length}</small><button class="btn sec" id="tSalta">Saltar</button><button class="btn" id="tSig">${n+1<TOUR.length?"Siguiente":"Entendido"}</button></div></div></div>`;
+  teclea(O);
+  $("#tSig").onclick=()=>tourTienda(n+1);$("#tSalta").onclick=()=>tourTienda(TOUR.length);$("#tSig").focus();
 }
 
 /* ---------- Mis guías ---------- */
