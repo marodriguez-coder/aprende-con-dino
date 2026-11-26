@@ -198,6 +198,64 @@ body.connav .app{padding-bottom:96px}
 .guia ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
 .seg{display:flex;gap:8px}.seg .btn{flex:1;font-size:.9rem;padding:9px 6px}
 .seg .btn[aria-pressed="true"]{border-color:var(--naranja);color:var(--naranja)}
+
+/* --- v1.4: mapa plano, perfil y tienda con color --- */
+.mundo.plano{border:0}
+.mundo.plano .mundo-head{background:transparent!important;padding-bottom:0}
+.mundo.plano .ruta{background:transparent}
+.nodo.blob{width:88px;height:82px;border-radius:46% 54% 52% 48%/55% 46% 54% 45%;border:0;background:rgba(255,255,255,.2);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:var(--body);font-size:.74rem;font-weight:700;text-transform:none;box-shadow:0 6px 0 rgba(0,0,0,.14);animation:none}
+.nodo.blob:nth-of-type(odd){border-radius:54% 46% 48% 52%/46% 55% 45% 54%}
+.nodo.blob svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.nodo.blob.hecho{background:#fff;color:var(--c)}
+.nodo.blob.hoy{width:104px;height:96px;background:#ffb020;color:#3a2400;font-size:.9rem;animation:late 1.6s ease-in-out infinite}
+.nodo.blob.espera{background:rgba(255,255,255,.12);outline:3px dashed rgba(255,255,255,.7);outline-offset:-3px}
+@keyframes late{50%{transform:translate(-50%,-50%) scale(1.06)}}
+.tit{position:absolute;transform:translateX(-50%);width:150px;text-align:center;color:#fff;font-weight:700;font-size:.84rem;line-height:1.2;pointer-events:none}
+.tit small{display:block;font-weight:500;opacity:.8}
+.arbol.plano svg{width:46px;height:46px}
+/* perfil */
+.hola{display:flex;align-items:center;gap:12px}
+.hola img{width:60px;height:60px;border-radius:50%;background:#e9e2ff;border:3px solid #fff}
+.hola h2{text-transform:none;font-family:var(--body);font-weight:700;font-size:1.35rem}
+.destacada{border-radius:26px;padding:18px;display:flex;align-items:center;gap:10px;color:#fff;background:#5b46e0;position:relative;overflow:hidden;min-height:150px}
+.destacada h3{font-family:var(--body);text-transform:none;font-size:1.3rem;line-height:1.15;font-weight:700}
+.destacada p{opacity:.85;font-size:.9rem;margin-top:4px}
+.destacada img{height:120px;flex:none;margin-right:-8px}
+.destacada .ir{margin-top:12px;width:48px;height:48px;border-radius:50%;border:0;background:#1f1f22;color:#fff;font-size:1.3rem}
+.cifras{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cifra{border-radius:22px;padding:14px;background:var(--ink);color:#231f1c;border:2px solid var(--k)}
+.cifra span{display:inline-block;background:var(--k);color:#fff;border-radius:10px;padding:2px 8px;font-size:.75rem;font-weight:700}
+.cifra b{display:block;font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.semana{background:var(--ink);color:#231f1c;border-radius:22px;padding:16px}
+.semana h4{margin:0 0 12px;font-size:1rem}
+#msgT:empty{display:none}
+.barras{margin-top:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:8px;height:120px}
+.barras div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;height:100%;font-size:.75rem;font-weight:600;color:#6b635c}
+.barras i{display:block;width:100%;max-width:30px;border-radius:12px;background:#f3d3c4;min-height:10px;position:relative}
+.barras i.on{background:var(--naranja)}
+.barras i em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:.7rem;color:#231f1c}
+/* tienda */
+.saldo-card{border-radius:26px;padding:18px;background:var(--naranja);color:#2a0f04;display:flex;align-items:center;justify-content:space-between;overflow:hidden}
+.saldo-card b{display:block;font-family:var(--display);font-size:3rem;line-height:1;font-variant-numeric:tabular-nums}
+.saldo-card img{height:96px;margin:-6px -6px -18px 0}
+.tabs{display:flex;gap:8px;background:var(--panel);border-radius:999px;padding:5px}
+.tabs button{flex:1;border:0;border-radius:999px;padding:10px 6px;background:none;font-weight:700;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#231f1c}
+.prod{border-radius:22px;padding:16px;background:var(--ink);color:#231f1c;display:flex;flex-direction:column;gap:8px;border-left:8px solid var(--k)}
+.prod .muted{color:#6b635c}
+.prod h3{font-family:var(--body);text-transform:none;font-size:1.05rem;font-weight:700}
+.prod .precio{display:inline-flex;align-items:center;gap:5px;background:var(--k);color:#fff;border-radius:999px;padding:3px 10px;font-weight:700;font-size:.85rem;white-space:nowrap}
+.prod .btn{align-self:flex-start;font-size:.95rem;padding:9px 16px;box-shadow:none;background:#231f1c;color:#fff}
+.prod .btn[disabled]{background:#d9d2cb;color:#8a827b}
+.prod .btn.sec{background:transparent;color:#231f1c;border-color:#231f1c}
+.prod.tv{background:#3917a8;color:#fff;border-left:0;padding:20px}
+.prod.tv .muted{color:#d6ccff}
+.prod.tv .btn{background:#ffb020;color:#3a2400}
+.prod.tv .btn[disabled]{background:rgba(255,255,255,.18);color:#d6ccff}
+.meta{height:10px;border-radius:99px;background:rgba(0,0,0,.12);overflow:hidden}
+.prod.tv .meta{background:rgba(255,255,255,.2)}
+.meta i{display:block;height:100%;border-radius:99px;background:#ffb020}
+.cab{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 </style>
 </head>
 <body>
@@ -209,7 +267,7 @@ body.connav .app{padding-bottom:96px}
     <div id="menu" class="menu" hidden></div>
   </header>
   <main id="v"></main>
-  <footer>MVP v1.3.0 · 26/11/2026 · MandarinaTec</footer>
+  <footer>MVP v1.4.0 · 26/11/2026 · MandarinaTec</footer>
 </div>
 <div id="hoja" hidden role="dialog" aria-label="Detalle"></div>
 <nav id="nav" hidden aria-label="Secciones"><div>
@@ -228,9 +286,9 @@ const SUPABASE_URL = "https://jjumtsblbnaqcqfvzngk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_TRUaOqfFxJtRKE2kpXu7fA_Foh6H2nY";
 
 const MUNDOS=[
- {n:"Mundo Principiante",c:"#3f9a37",sub:"Lo básico, sin vergüenza"},
- {n:"Mundo Intermedio",c:"#2054e5",sub:"Trucos para salir temprano"},
- {n:"Mundo Avanzado",c:"#5b3ad6",sub:"La IA trabaja, tú descansas"}
+ {n:"Mundo Principiante",c:"#3f9a37",sub:"Lo esencial, paso a paso"},
+ {n:"Mundo Intermedio",c:"#2054e5",sub:"Trucos para ahorrar tiempo"},
+ {n:"Mundo Avanzado",c:"#5b3ad6",sub:"La IA a tu favor"}
 ];
 const ERRORES={
  ya_completaste_hoy:"Ya hiciste el reto de hoy. Vuelve mañana para el siguiente.",
@@ -243,6 +301,8 @@ const ERRORES={
  guia_ya_obtenida:"Esa guía ya es tuya. Está en Mis guías.",
  cofre_bloqueado:"Todavía no llegas a ese cofre.",
  cofre_ya_abierto:"Ese cofre ya lo abriste.",
+ requiere_cuenta:"Guarda tu cuenta con correo y contraseña para canjear premios.",
+ premio_ya_solicitado:"Ya solicitaste ese premio. El equipo te contactará por correo.",
  maximo_protectores:"Ya tienes 2 protectores, el máximo que se puede guardar."
 };
 const $=s=>document.querySelector(s), V=$("#v");
@@ -279,7 +339,7 @@ function lluvia(n){
   for(let k=0;k<(n||28);k++){const i=document.createElement("i");i.style.left=Math.random()*100+"%";i.style.animationDuration=1.6+Math.random()*1.6+"s";i.style.animationDelay=Math.random()*.6+"s";i.style.transform=`scale(${.6+Math.random()*.8})`;L.appendChild(i)}
   document.body.appendChild(L);setTimeout(()=>L.remove(),4200);
 }
-function cargando(t){V.innerHTML=dino(t||"Un segundo, estoy pelando la información…")}
+function cargando(t){V.innerHTML=dino(t||"Cargando…")}
 function fallo(e){
   const k=(e&&e.message||"").match(/[a-z_]+/g)||[], cod=k.find(x=>ERRORES[x]);
   V.innerHTML=dino(cod?ERRORES[cod]:"Algo se trabó al conectar. Revisa tu internet y vuelve a intentar.","dino-alto.webp")+
@@ -298,7 +358,7 @@ let RECOMP=[], DESB=new Set(), SEC_HECHOS=new Set(), GUIAS=[], MIAS=new Set(), C
 const costo=c=>(RECOMP.find(r=>r.codigo===c)||{}).costo||0;
 const cierraMenu=()=>{};
 const errTxt=(e,def)=>{const k=(e&&e.message||"").match(/[a-z_]+/g)||[];return ERRORES[k.find(x=>ERRORES[x])]||def};
-const NOMBRE_CANJE={pista:"Pista",segunda:"Segunda oportunidad",nivel_secreto:"Nivel secreto",protector:"Protector de racha",guia:"Guía"};
+const NOMBRE_CANJE={pista:"Pista",segunda:"Segunda oportunidad",nivel_secreto:"Nivel secreto",protector:"Protector de racha",guia:"Guía",premio:"Premio"};
 async function canjea(codigo,reto){
   P=await rpc("canjear",{p_codigo:codigo,p_reto:reto});
   if(codigo==="nivel_secreto")DESB.add(reto);
@@ -316,40 +376,55 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")cierraHoja()});
 const MON_CH=MONEDA.replace('class="moneda"','class="moneda" style="width:16px;height:16px;vertical-align:-3px"');
 
 /* ---------- Tienda ---------- */
-function vTienda(){
+let TAB="premios", PREMIOS=[], SOLIC=new Set();
+const TV_SVG='<svg viewBox="0 0 96 70" width="96" height="70" aria-hidden="true"><rect x="4" y="4" width="88" height="52" rx="7" fill="#1f1f22"/><rect x="10" y="10" width="76" height="40" rx="3" fill="#7cc8ff"/><path d="M10 40 34 22l16 12 12-8 24 18v6H10z" fill="#5b46e0" opacity=".55"/><rect x="34" y="58" width="28" height="5" rx="2.5" fill="#fff"/></svg>';
+const num0=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,".");
+function vTienda(msg){
   setNav("tienda");stats();
   const sec=RETOS.filter(r=>r.tipo==="secreto"&&!DESB.has(r.orden));
-  V.innerHTML=`
-   <div class="fila"><div><div class="eyebrow">Tienda</div><h4 style="margin:0">Tus mandarinas</h4><div class="big" style="font-family:var(--display);font-weight:800;font-size:2.6rem;line-height:1">${P.mandarinas}</div>
-     <p class="muted">Peladas en total: <b>${P.total_ganado}</b>${P.protectores?` · Protectores: <b>${P.protectores}</b>`:""}</p></div>${hero("guia").replace("dino-hero","dino-hero mini")}</div>
-   <div id="msgT" class="err" role="status"></div>
-   ${GUIAS.length?`<section class="card"><div class="eyebrow">Guías de MandarinaTec</div>
-     ${GUIAS.map(g=>`<div class="item"><div class="fila"><b>${esc(g.titulo)}</b><b>${MON_CH} ${g.costo}</b></div><span class="muted">${esc(g.resumen)}</span>
+  const precio=c=>`<span class="precio">${MON_CH} ${num0(c)}</span>`;
+  let cuerpo="";
+  if(TAB==="premios"){
+    cuerpo=PREMIOS.map(x=>{const ya=SOLIC.has(x.codigo), pct=Math.min(100,Math.round(P.mandarinas/x.costo*100));
+      return `<div class="prod tv"><div class="cab"><div><div class="eyebrow" style="color:#ffb020">Premio de ${esc(x.aliado)}</div><h3 style="font-size:1.5rem">${esc(x.nombre)}</h3></div>${TV_SVG}</div>
+        <p class="muted">${esc(x.descripcion)}</p>
+        <div class="meta"><i style="width:${ya?100:pct}%"></i></div>
+        <div class="cab"><span>${ya?"Solicitud enviada":`Tienes <b>${num0(P.mandarinas)}</b> de ${num0(x.costo)}`}</span>${precio(x.costo)}</div>
+        ${ya?`<p class="muted">El equipo te contactará por correo para coordinar la entrega.</p>`
+          :ANON?`<p class="muted">Guarda tu cuenta desde Perfil para poder canjear premios.</p>`
+          :`<button class="btn" data-p="${x.codigo}" ${P.mandarinas<x.costo?"disabled":""}>${P.mandarinas<x.costo?`Te faltan ${num0(x.costo-P.mandarinas)}`:"Canjear premio"}</button>`}</div>`}).join("")
+      ||dino("Pronto habrá premios de nuestros aliados.");
+  }else if(TAB==="guias"){
+    cuerpo=GUIAS.map(g=>`<div class="prod" style="--k:#2054e5"><div class="cab"><h3>${esc(g.titulo)}</h3>${precio(g.costo)}</div><span class="muted">${esc(g.resumen)}</span>
        ${MIAS.has(g.codigo)?`<button class="btn sec" data-lee="${g.codigo}">Ya es tuya · Leer</button>`
-         :`<button class="btn sec" data-g="${g.codigo}" ${P.mandarinas<g.costo?"disabled":""}>Canjear</button>${COFRES.some(c=>c.guia_codigo===g.codigo)?`<span class="muted">También sale gratis en un cofre del mapa.</span>`:""}`}</div>`).join("")}</section>`:""}
-   <section class="card"><div class="eyebrow">Recompensas</div>
-     ${RECOMP.map(r=>`<div class="item"><div class="fila"><b>${esc(r.nombre)}</b><b>${MON_CH} ${r.costo}</b></div><span class="muted">${esc(r.descripcion)}</span>
-       ${r.codigo==="protector"?`<button class="btn sec" data-c="protector" ${P.mandarinas<r.costo||P.protectores>=2?"disabled":""}>Canjear</button>`
-        :r.codigo==="nivel_secreto"?(sec.length?sec.map(x=>`<button class="btn sec" data-c="nivel_secreto" data-r="${x.orden}" ${P.mandarinas<r.costo?"disabled":""}>Abrir «${esc(x.titulo)}»</button>`).join(""):`<span class="muted">Ya abriste todos los niveles secretos.</span>`)
-        :""}</div>`).join("")}</section>
-   <section class="card"><div class="eyebrow">Cómo ganar mandarinas</div>
-     <div class="fila"><span>Cada actividad sin errores</span><b>+10</b></div>
-     <div class="fila"><span>Reto práctico hecho</span><b>+20</b></div>
-     <div class="fila"><span>Terminar un mundo</span><b>+20</b></div>
-     <div class="fila"><span>Cada 7 días de racha</span><b>+15</b></div>
-     <div class="fila"><span>Cofres del mapa</span><b>+15 o una guía</b></div></section>
-   <section class="card"><div class="eyebrow">Historial de canjes</div><div id="hist"><p class="muted">Cargando…</p></div></section>`;
-  const fin=(ok)=>{lluvia(14);vTienda();$("#msgT").textContent=ok};
-  V.querySelectorAll("[data-c]").forEach(b=>b.onclick=async()=>{b.disabled=true;
-    try{await canjea(b.dataset.c,b.dataset.r?+b.dataset.r:null);fin(b.dataset.r?"Nivel secreto abierto. Juégalo desde el mapa.":"Listo, canjeado.")}
-    catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
-  V.querySelectorAll("[data-g]").forEach(b=>b.onclick=async()=>{b.disabled=true;
-    try{P=await rpc("canjear_guia",{p_codigo:b.dataset.g});MIAS.add(b.dataset.g);fin("Guía canjeada. Ya está en Mis guías.")}
-    catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
+         :`<button class="btn" data-g="${g.codigo}" ${P.mandarinas<g.costo?"disabled":""}>Canjear</button>${COFRES.some(c=>c.guia_codigo===g.codigo)?`<span class="muted">También sale gratis en un cofre del mapa.</span>`:""}`}</div>`).join("")
+      ||dino("Las guías todavía no están cargadas.");
+  }else{
+    cuerpo=RECOMP.map(r=>`<div class="prod" style="--k:#3f9a37"><div class="cab"><h3>${esc(r.nombre)}</h3>${precio(r.costo)}</div><span class="muted">${esc(r.descripcion)}</span>
+       ${r.codigo==="protector"?`<button class="btn" data-c="protector" ${P.mandarinas<r.costo||P.protectores>=2?"disabled":""}>Canjear</button>${P.protectores?`<span class="muted">Tienes ${P.protectores} guardados.</span>`:""}`
+        :r.codigo==="nivel_secreto"?(sec.length?sec.map(x=>`<button class="btn" data-c="nivel_secreto" data-r="${x.orden}" ${P.mandarinas<r.costo?"disabled":""}>Abrir «${esc(x.titulo)}»</button>`).join(""):`<span class="muted">Ya abriste todos los niveles secretos.</span>`)
+        :`<span class="muted"><b>Se usa dentro de un reto,</b> al responder una pregunta.</span>`}</div>`).join("")+
+     `<section class="card"><div class="eyebrow">Cómo ganar mandarinas</div>
+       <div class="fila"><span>Cada actividad sin errores</span><b>+10</b></div><div class="fila"><span>Reto práctico hecho</span><b>+20</b></div>
+       <div class="fila"><span>Terminar un mundo</span><b>+20</b></div><div class="fila"><span>Cada 7 días de racha</span><b>+15</b></div>
+       <div class="fila"><span>Cofres del mapa</span><b>+15 o una guía</b></div></section>
+      <section class="card"><div class="eyebrow">Historial de canjes</div><div id="hist"><p class="muted">Cargando…</p></div></section>`;
+  }
+  V.innerHTML=`
+   <div class="saldo-card"><div><div style="font-weight:700">Tus mandarinas</div><b>${num0(P.mandarinas)}</b><span>Total ganado: ${num0(P.total_ganado)}</span></div><img src="dino-guia.webp" alt=""></div>
+   <div class="tabs" role="tablist">${[["premios","Premios"],["guias","Guías"],["ayudas","Ayudas"]].map(t=>`<button role="tab" data-tab="${t[0]}" aria-selected="${TAB===t[0]}">${t[1]}</button>`).join("")}</div>
+   <div id="msgT" class="err" role="status">${msg||""}</div>
+   ${cuerpo}`;
+  V.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{TAB=b.dataset.tab;vTienda()});
+  const canje=(sel,fn,ok)=>V.querySelectorAll(sel).forEach(b=>b.onclick=async()=>{b.disabled=true;
+    try{await fn(b);lluvia(14);vTienda(ok(b))}catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
+  canje("[data-c]",b=>canjea(b.dataset.c,b.dataset.r?+b.dataset.r:null),b=>b.dataset.r?"Nivel secreto abierto. Juégalo desde el mapa.":"Listo, canjeado.");
+  canje("[data-g]",async b=>{P=await rpc("canjear_guia",{p_codigo:b.dataset.g});MIAS.add(b.dataset.g)},()=>"Guía canjeada. Ya está en Mis guías.");
+  canje("[data-p]",async b=>{P=await rpc("canjear_premio",{p_codigo:b.dataset.p});SOLIC.add(b.dataset.p)},()=>"Solicitud enviada. Te contactaremos por correo.");
   V.querySelectorAll("[data-lee]").forEach(b=>b.onclick=()=>vGuia(b.dataset.lee));
-  sb.from("canjes").select("codigo,costo,creado").order("creado",{ascending:false}).limit(8).then(({data})=>{
+  if($("#hist"))sb.from("canjes").select("codigo,costo,creado").order("creado",{ascending:false}).limit(8).then(({data})=>{
     const H=$("#hist");if(!H)return;
-    H.innerHTML=data&&data.length?data.map(h=>`<div class="fila"><span>${NOMBRE_CANJE[h.codigo]||h.codigo} · ${new Date(h.creado).toLocaleDateString("es")}</span><b>−${h.costo}</b></div>`).join(""):'<p class="muted">Todavía no canjeas nada.</p>'});
+    H.innerHTML=data&&data.length?data.map(h=>`<div class="fila"><span>${NOMBRE_CANJE[h.codigo]||h.codigo} · ${new Date(h.creado).toLocaleDateString("es")}</span><b>−${num0(h.costo)}</b></div>`).join(""):'<p class="muted">Todavía no canjeas nada.</p>'});
   window.scrollTo(0,0);
 }
 
@@ -382,24 +457,42 @@ async function vGuia(codigo){
 /* ---------- Perfil ---------- */
 function vPerfil(){
   setNav("perfil");stats();
-  const MAIN=RETOS.filter(r=>r.tipo!=="secreto"), hechos=MAIN.filter(r=>r.orden<P.siguiente_reto&&r.mundo>=P.nivel_inicial).length;
-  V.innerHTML=`<div class="dino-row"><img class="cara" src="dino-cara.webp" alt=""><div><div class="eyebrow">Perfil</div><h2>${ANON?"Invitado":esc(P.usuario||"Tu cuenta")}</h2><p class="muted">${ANON?"Sin cuenta guardada":esc(P.email)}</p></div></div>
-   <div class="grid2"><div><b>${rachaViva()}</b>días de racha</div><div><b>${P.mandarinas}</b>mandarinas</div>
-     <div><b>${hechos}</b>retos completados</div><div><b>${MIAS.size}</b>guías</div></div>
+  const MAIN=RETOS.filter(r=>r.tipo!=="secreto"), desde=MAIN.filter(r=>r.mundo>=P.nivel_inicial), hechos=desde.filter(r=>r.orden<P.siguiente_reto).length;
+  const pct=desde.length?Math.round(hechos/desde.length*100):0, sig=MAIN.find(r=>r.orden===P.siguiente_reto), yaHoy=P.ultimo_dia===HOY;
+  const nombre=ANON?"":(P.usuario||"").replace(/^./,c=>c.toUpperCase());
+  V.innerHTML=`
+   <div class="hola"><img src="dino-cara.webp" alt=""><div><h2>Hola${nombre?", "+esc(nombre):""}</h2><p class="muted">Avance: ${pct}% del camino${ANON?" · Invitado":""}</p></div></div>
+   <div class="destacada"><div style="flex:1"><div style="font-weight:700;opacity:.85;font-size:.85rem">${!sig?"Camino completado":yaHoy?"Listo por hoy":"Tu reto de hoy"}</div>
+      <h3>${!sig?"Terminaste todos los mundos":esc(sig.titulo)}</h3><p>${!sig?"Repasa cuando quieras desde el mapa.":yaHoy?"Se abre mañana.":"Cinco minutos y sumas a tu racha."}</p>
+      <button class="ir" id="irMapa" aria-label="Ir al mapa">→</button></div><img src="dino-guia.webp" alt=""></div>
+   <div class="cifras"><div class="cifra" style="--k:#fc5e31"><span>Retos</span><b>${hechos}</b>completados</div>
+     <div class="cifra" style="--k:#5b46e0"><span>Racha</span><b>${rachaViva()}</b>${rachaViva()===1?"día seguido":"días seguidos"}</div></div>
+   <div class="semana"><h4>Tu semana</h4><div class="barras" id="sem">${"LMXJVSD".split("").map(d=>`<div><i></i>${d}</div>`).join("")}</div></div>
+   <div class="cifras"><div class="cifra" style="--k:#3f9a37"><span>Mandarinas</span><b>${num0(P.mandarinas)}</b>en tu saldo</div>
+     <div class="cifra" style="--k:#2054e5"><span>Guías</span><b>${MIAS.size}</b>en tu biblioteca</div></div>
    ${ANON?`<div class="card" style="border-color:var(--amarillo)"><p><b>Estás jugando como invitado.</b> Si borras el navegador o cambias de teléfono, pierdes tu racha.</p>
-      <div class="ayuda"><button class="btn" id="guardar">Guardar mi avance</button><button class="btn sec" id="yaCuenta">Ya tengo cuenta</button></div></div>`:""}
+      <div class="ayuda"><button class="btn" id="guardar">Guardar mi avance</button><button class="btn sec" id="yaCuenta">Ya tengo cuenta</button></div></div>`
+     :`<div class="card"><div class="eyebrow">Tu cuenta</div><p>${esc(P.email)}</p><button class="btn sec" id="salir">Cerrar sesión</button></div>`}
    <div class="card"><div class="eyebrow">El cielo del mapa</div><div class="seg">
      ${[["","Automático"],["dia","Día"],["noche","Noche"]].map(m=>`<button class="btn sec" data-m="${m[0]}" aria-pressed="${(MODO||"")===m[0]}">${m[1]}</button>`).join("")}</div>
      <p class="muted">En automático se hace de noche a las 6 de la tarde, según tu hora.</p></div>
-   ${ANON?"":`<button class="btn sec" id="salir">Cerrar sesión</button>`}
    ${P.es_tester?`<div class="demo"><p class="muted"><b>Controles de prueba.</b> Solo los ve el equipo (es_tester en Supabase).</p><div>
      <button class="btn sec" data-t="saltar_dia">Saltar al día siguiente</button><button class="btn sec" data-t="reiniciar">Reiniciar mi progreso</button><button class="btn sec" data-t="mandarinas">+200 mandarinas</button></div></div>`:""}`;
+  $("#irMapa").onclick=vMapa;
   if(ANON){$("#guardar").onclick=()=>vGuardar(vPerfil);$("#yaCuenta").onclick=()=>vLogin(vPerfil)}
   else $("#salir").onclick=async()=>{await sb.auth.signOut();P=null;ANON=false;setNav(null);vEntrada()};
   V.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{MODO=b.dataset.m||null;try{MODO?localStorage.setItem("mt_modo",MODO):localStorage.removeItem("mt_modo")}catch(e){}vPerfil()});
   V.querySelectorAll("[data-t]").forEach(b=>b.onclick=async()=>{cargando();
     try{await rpc("tester_accion",{p_accion:b.dataset.t});await cargarTodo()}catch(e){return fallo(e)}
     P.nivel_inicial==null?vTest():b.dataset.t==="saltar_dia"?vMapa():vPerfil()});
+  // Barras de la semana (lunes a domingo) con las mandarinas ganadas cada día
+  const h=new Date(HOY+"T12:00:00"), lun=new Date(h); lun.setDate(h.getDate()-((h.getDay()+6)%7));
+  const f=d=>d.toISOString().slice(0,10), dias7=[...Array(7)].map((_,k)=>{const d=new Date(lun);d.setDate(lun.getDate()+k);return f(d)});
+  sb.from("intentos").select("dia,puntos").gte("dia",dias7[0]).then(({data})=>{
+    const S=$("#sem");if(!S)return;
+    const tot=dias7.map(d=>(data||[]).filter(x=>x.dia===d).reduce((a,x)=>a+x.puntos,0)), mx=Math.max(60,...tot);
+    S.innerHTML=dias7.map((d,k)=>`<div><i class="${tot[k]?"on":""}" style="height:${tot[k]?Math.max(18,tot[k]/mx*100):8}%">${tot[k]?`<em>${tot[k]}</em>`:""}</i><span ${d===HOY?'style="color:#fc5e31"':""}>${"LMXJVSD"[k]}</span></div>`).join("");
+  });
   window.scrollTo(0,0);
 }
 async function rpc(fn,args){const {data,error}=await sb.rpc(fn,args);if(error)throw error;return Array.isArray(data)?data[0]:data}
@@ -420,6 +513,8 @@ async function cargarTodo(){
   const [g,mg,cf,ca]=await Promise.all([opc(sb.from("guias").select("*").order("orden")),opc(sb.from("guias_usuario").select("codigo")),
     opc(sb.from("cofres").select("*").order("id")),opc(sb.from("cofres_abiertos").select("cofre_id"))]);
   GUIAS=g; MIAS=new Set(mg.map(x=>x.codigo)); COFRES=cf; ABIERTOS=new Set(ca.map(x=>x.cofre_id));
+  const [pr,so]=await Promise.all([opc(sb.from("premios").select("*").order("orden")),opc(sb.from("solicitudes_premio").select("codigo"))]);
+  PREMIOS=pr; SOLIC=new Set(so.map(x=>x.codigo));
 }
 
 /* ---------- Entrada: jugar sin registro ---------- */
@@ -431,7 +526,7 @@ function vEntrada(msg){
   V.innerHTML=`
    ${hero("guia")}
    <div><div class="eyebrow">Un reto al día</div><h1>Aprende tecnología con Dino</h1></div>
-   <p>Cinco minutos diarios de trucos, IA y herramientas de trabajo. En cristiano y sin sabelotodos. Más fácil que pelar una mandarina.</p>
+   <p>Cinco minutos diarios de trucos, IA y herramientas de trabajo. Explicado claro y sin tecnicismos.</p>
    <div class="err" id="e" role="alert">${msg||""}</div>
    <button class="btn" id="b">Empezar con Dino</button>
    <button class="btn sec" id="ya">Ya tengo cuenta</button>
@@ -535,7 +630,7 @@ function vTest(){
     V.innerHTML=`
      ${hero("guia","salta")}
      <div class="card"><div class="eyebrow">Tu punto de partida</div><h2>${MUNDOS[P.nivel_inicial].n}</h2>
-      <p>${["Arrancamos desde lo básico. Es el mejor lugar para empezar: aquí se arman los trucos que usan todos los demás.","Ya te defiendes. Te salto lo básico y vamos directo a los trucos para salir temprano.","Tú ya pelas la tecnología. Vamos a lo fino: elegir IA, automatizar y entender qué es una API."][P.nivel_inicial]}</p>
+      <p>${["Arrancamos desde lo básico. Es el mejor lugar para empezar: aquí se arman los trucos que usan todos los demás.","Ya te defiendes. Te salto lo básico y vamos directo a los trucos para ahorrar tiempo.","Ya dominas lo básico. Vamos a lo avanzado: elegir IA, automatizar y entender qué es una API."][P.nivel_inicial]}</p>
       <p class="muted">Los mundos anteriores quedan abiertos por si quieres repasar.</p>
       <button class="btn" id="go">Ver mi mapa</button></div>`;
     $("#go").onclick=vMapa;
@@ -547,12 +642,10 @@ function vTest(){
 let AVANZO=false, MODO=null;                 // MODO: null automático | "dia" | "noche"
 try{MODO=localStorage.getItem("mt_modo")||null}catch(e){}
 const esNoche=()=>MODO?MODO==="noche":(h=>h<6||h>=18)(new Date().getHours());
-const PAL={dia:{cielo:["#7cc8ff","#d6f1ff"],prado:["#79c96a","#9fd06c","#8fc4a0"],camino:"#f4e3b5",raya:"#d9bf7e",copa:"#3f9a37",copa2:"#58b84b",tronco:"#8a5a33",muro:"#f6e7cf",techo:"#fc5e31",vent:"#7cc8ff",torre:"#c9d3e6"},
-           noche:{cielo:["#141a45","#2c3470"],prado:["#1f4d3c","#2b5540","#27495a"],camino:"#8f8a78",raya:"#6c6858",copa:"#1f5a2b",copa2:"#2a6d36",tronco:"#4d3524",muro:"#6b6480",techo:"#a8452a",vent:"#ffd966",torre:"#4a5378"}};
-const FRASES=["Un reto al día y en un mes le explicas tú al sabelotodo de la oficina.","Los cofres del camino dicen qué traen. Aquí nada es al azar.","¿Ya viste la tienda? Hay guías que se canjean con mandarinas.","Toca cualquier nivel para ver de qué trata.","Los árboles también se dejan tocar. No dan mandarinas, pero relajan."];
-const arbolSVG=p=>`<svg viewBox="0 0 60 78" width="60" height="78" aria-hidden="true"><rect x="26" y="46" width="8" height="30" rx="3" fill="${p.tronco}"/><circle cx="30" cy="30" r="27" fill="${p.copa}"/><circle cx="22" cy="22" r="14" fill="${p.copa2}"/><g fill="#fc8a31"><circle cx="16" cy="34" r="5"/><circle cx="38" cy="18" r="5"/><circle cx="43" cy="38" r="5"/><circle cx="27" cy="45" r="4.5"/></g></svg>`;
-const casaSVG=p=>`<svg viewBox="0 0 64 60" width="64" height="60" aria-hidden="true"><rect x="10" y="26" width="44" height="32" rx="3" fill="${p.muro}"/><path d="M4 30 32 6l28 24z" fill="${p.techo}"/><rect x="18" y="36" width="11" height="11" rx="2" fill="${p.vent}"/><rect x="37" y="38" width="10" height="20" rx="2" fill="${p.tronco}"/></svg>`;
-const torreSVG=p=>`<svg viewBox="0 0 64 84" width="64" height="84" aria-hidden="true"><rect x="6" y="24" width="24" height="58" rx="3" fill="${p.torre}"/><rect x="32" y="6" width="26" height="76" rx="3" fill="${p.muro}"/><g fill="${p.vent}">${[14,28,42,56,68].map(y=>`<rect x="38" y="${y}" width="6" height="7" rx="1"/><rect x="48" y="${y}" width="6" height="7" rx="1"/>`).join("")}${[32,46,60].map(y=>`<rect x="11" y="${y}" width="5" height="7" rx="1"/><rect x="20" y="${y}" width="5" height="7" rx="1"/>`).join("")}</g></svg>`;
+const PAL={dia:{fondo:["#3fa66b","#2f62e8","#6a4be0"]},noche:{fondo:["#1c5a42","#1b3891","#3a2a8a"]}};
+const FRASES=["Un reto al día es suficiente. La constancia hace el resto.","Los cofres del camino muestran su premio antes de abrirse.","En la tienda puedes canjear guías, ayudas y premios.","Toca cualquier nivel para ver de qué trata.","Tu avance de la semana está en la pestaña Perfil."];
+const arbolSVG=()=>`<svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="22" fill="rgba(255,255,255,.14)"/><path d="M23 36V22M23 27l-5-4M23 24l5-4" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M23 8c6 0 10 4 10 9s-4 8-10 8-10-3-10-8 4-9 10-9z" fill="none" stroke="#fff" stroke-width="2.4"/></svg>`;
+const ICO={cand:'<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',ok:'<svg viewBox="0 0 24 24"><path d="M5 13l4.5 4.5L19 7"/></svg>',band:'<svg viewBox="0 0 24 24"><path d="M6 21V4M6 5h11l-2.5 4L17 13H6"/></svg>',reloj:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>'};
 const cofreSVG=ab=>`<svg viewBox="0 0 74 66" aria-hidden="true"><rect x="8" y="30" width="58" height="30" rx="6" fill="#a8521e"/><rect x="8" y="30" width="58" height="9" fill="#8a3f14"/>
   <g transform="${ab?"rotate(-28 10 30)":""}"><path d="M8 32v-8a14 14 0 0 1 14-14h30a14 14 0 0 1 14 14v8z" fill="#c9692a"/><rect x="31" y="10" width="12" height="22" fill="#e8c348"/></g>
   <rect x="31" y="30" width="12" height="30" fill="#e8c348"/><circle cx="37" cy="42" r="5" fill="#8a3f14"/>${ab?'<g fill="#fc8a31"><circle cx="24" cy="26" r="6"/><circle cx="50" cy="25" r="6"/><circle cx="37" cy="22" r="6"/></g>':""}</svg>`;
@@ -570,18 +663,15 @@ function vMapa(){
     const rs=MAIN.filter(r=>r.mundo===w); if(!rs.length)return;
     const items=[]; rs.forEach(r=>{items.push({r});COFRES.filter(c=>c.despues_de===r.orden).forEach(c=>items.push({c}))});
     const n=items.length, H=Y0+PASO*(n-1)+120, Y=k=>Y0+PASO*k, hechos=rs.filter(r=>r.orden<P.siguiente_reto&&w>=P.nivel_inicial).length;
-    html+=`<section class="mundo"><div class="mundo-head" style="background:${m.c}"><div><h3>${m.n}</h3><small>${m.sub}</small></div>
+    const pt=items.map((_,k)=>[X[k%6]*4,Y(k)]), d="M"+pt[0]+pt.slice(1).map((q,k)=>` C${pt[k][0]} ${pt[k][1]+PASO/2} ${q[0]} ${q[1]-PASO/2} ${q[0]} ${q[1]}`).join("");
+    html+=`<section class="mundo plano" style="background:${p.fondo[w]}"><div class="mundo-head"><div><h3>${m.n}</h3><small>${m.sub}</small></div>
       <span>${w<P.nivel_inicial?"Convalidado":hechos+" de "+rs.length}</span></div>
-      <div class="ruta" data-w="${w}" style="height:${H}px;background:${p.prado[w]}">
+      <div class="ruta" data-w="${w}" style="height:${H}px">
       <svg viewBox="0 0 400 ${H}" preserveAspectRatio="none" aria-hidden="true">
-        <defs><linearGradient id="cielo${w}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.cielo[0]}"/><stop offset="1" stop-color="${p.cielo[1]}"/></linearGradient></defs>
-        <rect width="400" height="84" fill="url(#cielo${w})"/>
-        ${noche?`<circle cx="338" cy="34" r="16" fill="#f4f1d0"/><circle cx="331" cy="29" r="14" fill="${p.cielo[0]}"/>${[[30,20],[80,44],[130,16],[190,36],[240,14],[285,50],[370,66],[60,64]].map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="1.6" fill="#fff"/>`).join("")}`
-               :`<circle cx="338" cy="34" r="18" fill="#ffd84a"/><g fill="#fff" opacity=".9"><ellipse cx="80" cy="30" rx="30" ry="11"/><ellipse cx="102" cy="24" rx="20" ry="10"/><ellipse cx="230" cy="46" rx="26" ry="9"/></g>`}
-        <path d="M0 84 Q50 54 100 74 T200 68 T300 76 T400 62 V100 H0Z" fill="${p.prado[w]}"/>
-        <polyline points="${items.map((_,k)=>X[k%6]*4+","+Y(k)).join(" ")}" fill="none" stroke="${p.camino}" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
-        <polyline points="${items.map((_,k)=>X[k%6]*4+","+Y(k)).join(" ")}" fill="none" stroke="${p.raya}" stroke-width="3" stroke-dasharray="2 14" stroke-linecap="round"/>
-        <g fill="${p.copa2}" opacity=".55">${items.map((_,k)=>`<circle cx="${(k*97+60)%380+10}" cy="${Y(k)+64}" r="4"/><circle cx="${(k*151+200)%380+10}" cy="${Y(k)-58}" r="3"/>`).join("")}</g>
+        <g fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="2">${[0,1,2,3].map(c=>`<ellipse cx="${(c*173+w*60)%400}" cy="${(c*H/4+90)}" rx="${150+c*30}" ry="${90+c*22}"/><ellipse cx="${(c*173+w*60)%400}" cy="${(c*H/4+90)}" rx="${100+c*30}" ry="${55+c*22}"/>`).join("")}</g>
+        ${noche?`<g fill="#fff">${items.map((_,k)=>`<circle cx="${(k*131+40)%390}" cy="${Y(k)-70}" r="1.6" opacity=".8"/><circle cx="${(k*71+220)%390}" cy="${Y(k)+50}" r="1.2" opacity=".6"/>`).join("")}</g>`:""}
+        <g fill="#000" opacity=".12">${items.map((_,k)=>`<ellipse cx="${(k*97+200)%360+20}" cy="${Y(k)+66}" rx="11" ry="7"/><ellipse cx="${(k*97+214)%360+20}" cy="${Y(k)+70}" rx="7" ry="5"/>`).join("")}</g>
+        <path d="${d}" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="4" stroke-dasharray="10 12" stroke-linecap="round"/>
       </svg>`;
     if(noche) for(let f=0;f<5;f++) html+=`<i class="lucier" style="left:${(f*37+12)%90+4}%;top:${110+(f*173)%(H-150)}px;animation-delay:${f*.5}s"></i>`;
     items.forEach((it,k)=>{
@@ -590,20 +680,18 @@ function vMapa(){
         const r=it.r, hecho=r.orden<P.siguiente_reto, actual=r.orden===P.siguiente_reto;
         const cls=hecho?"hecho":actual?(yaHoy?"espera":"hoy"):"cerrado";
         const est=w<P.nivel_inicial?"Repaso libre":hecho?"Completado":actual?(yaHoy?"Se abre mañana":"Reto de hoy"):"Bloqueado";
-        html+=`<button class="nodo ${cls}" style="left:${x}%;top:${y}px;--c:${m.c}" data-o="${r.orden}" aria-label="${esc(r.titulo)}: ${est}">${hecho?"✓":num(r)}</button>
-          <div class="chip" style="left:${x}%;top:${y+42}px"><b>${esc(r.titulo)}</b><small>${est}</small></div>`;
+        html+=`<button class="nodo blob ${cls}" style="left:${x}%;top:${y}px;--c:${p.fondo[w]}" data-o="${r.orden}" aria-label="${esc(r.titulo)}: ${est}">${hecho?ICO.ok:actual?(yaHoy?ICO.reloj:ICO.band):ICO.cand}${actual&&!yaHoy?"Empezar":"Día "+num(r)}</button>
+          <div class="tit" style="left:${x}%;top:${y+(actual&&!yaHoy?56:48)}px">${esc(r.titulo)}<small>${est}</small></div>`;
       }else{
         const c=it.c, ab=ABIERTOS.has(c.id), listo=!ab&&P.siguiente_reto>c.despues_de, g=GUIAS.find(q=>q.codigo===c.guia_codigo);
         html+=`<button class="cofre-btn ${ab?"abierto":listo?"listo":"cerrado"}" style="left:${x}%;top:${y}px" data-cofre="${c.id}" aria-label="Cofre: ${ab?"abierto":listo?"listo para abrir":"cerrado"}">${cofreSVG(ab)}</button>
-          <div class="chip" style="left:${x}%;top:${y+40}px"><b>${g?"Cofre con guía":"Cofre"}</b><small>${ab?"Abierto":g?esc(g.titulo):"+"+c.mandarinas+" mandarinas"}</small></div>`;
+          <div class="tit" style="left:${x}%;top:${y+38}px">${g?"Cofre con guía":"Cofre"}<small>${ab?"Abierto":g?esc(g.titulo):"+"+c.mandarinas+" mandarinas"}</small></div>`;
       }
       if(it.r&&it.r===dinoEn){
         const dormido=noche&&yaHoy;
         html+=`<button class="dino-mapa ${dormido?"duerme":""}" id="dinoMapa" style="left:${ladoD}%;top:${y+30}px" data-k="${k}" aria-label="Dino">${dormido?'<span class="zzz">z z z</span>':""}<img src="dino-guia.webp" alt="Dino" ${lado>50?'style="transform:scaleX(-1)"':""}></button>
           <div class="globo" id="globo" style="${lado>50?"right:4%":"left:4%"};top:${y-28}px">${dormido?"Zzz… ya hiciste lo de hoy. Yo también descanso.":msgHoy}</div>`;
-      }else html+=w===1&&k%2===0?`<div class="decor" style="left:${lado}%;top:${y+26}px">${casaSVG(p)}</div>`
-               :w===2&&k%2===0?`<div class="decor" style="left:${lado}%;top:${y+16}px">${torreSVG(p)}</div>`
-               :`<button class="arbol" style="left:${lado}%;top:${y+24}px" aria-label="Árbol de mandarinas">${arbolSVG(p)}</button>`;
+      }else html+=`<button class="arbol plano" style="left:${lado}%;top:${y+24}px" aria-label="Árbol">${arbolSVG()}</button>`;
     });
     html+=`</div></section>`;
   });
@@ -822,13 +910,13 @@ function vReto(R){
     const finMundo=!SECR&&subio&&!MAIN.some(r=>r.mundo===w&&r.orden>R.orden), sigM=MUNDOS[w+1];
     if(subio)lluvia(ganado>=40?36:20);if(subio&&!SECR)AVANZO=true;
     V.innerHTML=`${hero("guia",subio?"salta":"")}
-      <div><div class="eyebrow">${!subio?"Repaso terminado":SECR?"Nivel secreto completado":"Reto del día completado"}</div><h1>${finMundo?"Mundo superado":"Uno más pelado"}</h1></div>
+      <div><div class="eyebrow">${!subio?"Repaso terminado":SECR?"Nivel secreto completado":"Reto del día completado"}</div><h1>${finMundo?"Mundo superado":"Reto completado"}</h1></div>
       ${subio?`<div class="premio"><div><b>+${ganado}</b>mandarinas</div>${SECR?`<div><b>${P.mandarinas}</b>en tu saldo</div>`:`<div><b>${P.racha}</b>${P.racha===1?"día de racha":"días de racha"}</div>`}</div>`
-             :`<p class="muted">Los repasos no suman mandarinas, pero sí neuronas.</p>`}
+             :`<p class="muted">Los repasos no suman mandarinas, pero refuerzan lo aprendido.</p>`}
       ${dino(bono?`Incluye <b>+${bono}</b> de bono${finMundo?" por terminar el mundo":""}${P.racha%7===0&&!SECR?" por tu racha de "+P.racha+" días":""}. ${finMundo&&sigM&&MAIN.some(r=>r.mundo===w+1)?`Mañana se abre el ${sigM.n}.`:""}`
             :finMundo&&sigM&&MAIN.some(r=>r.mundo===w+1)?`Terminaste el ${MUNDOS[w].n}. Mañana se abre el ${sigM.n}.`
-            :SECR&&subio?"Nivel secreto pelado. Tus mandarinas ya están en el saldo."
-            :subio?"Eso era todo por hoy. Cierra la laptop y vuelve mañana para no perder la racha.":"Bien repasado.")}
+            :SECR&&subio?"Nivel secreto completado. Tus mandarinas ya están en el saldo."
+            :subio?"Eso era todo por hoy. Vuelve mañana para no perder la racha.":"Bien repasado.")}
       <button class="btn" id="s">Volver al mapa</button>`;
     $("#s").onclick=()=>ANON&&subio&&!SECR?vGuardar(vMapa):vMapa();window.scrollTo(0,0);
   };
