@@ -303,6 +303,48 @@ body.connav .app{padding-bottom:96px}
 .tour-pie{display:flex;align-items:center;gap:8px;margin-top:10px;color:#fff}
 .tour-pie small{margin-right:auto;white-space:nowrap}.tour-pie .btn{font-size:.9rem;padding:8px 14px}
 .tour-luz{position:relative;z-index:31;box-shadow:0 0 0 4px #ffb020,0 0 0 9999px rgba(0,0,0,0)!important;border-radius:22px}
+
+/* --- v1.6: onboarding, islas y temas --- */
+.ob-puntos{display:flex;gap:6px;justify-content:center}
+.ob-puntos i{width:28px;height:6px;border-radius:9px;background:var(--panel-2)}.ob-puntos i.on{background:var(--naranja)}
+.ob-hero{position:relative;height:280px;display:flex;justify-content:center;align-items:flex-end;background:radial-gradient(circle at 50% 70%,rgba(252,94,49,.35),transparent 65%)}
+.ob-hero img{height:230px;filter:drop-shadow(0 16px 18px rgba(0,0,0,.5));animation:entra .6s cubic-bezier(.2,1.4,.4,1) both,flota 3.2s ease-in-out .6s infinite}
+.ob-flota{position:absolute;width:66px;height:66px;border-radius:20px;display:grid;place-items:center;box-shadow:0 10px 20px rgba(0,0,0,.35);animation:orbita 4s ease-in-out infinite}
+.ob-flota svg{width:46px;height:46px}
+.ob-flota.f0{left:4%;top:30px}.ob-flota.f1{right:6%;top:16px;animation-delay:-1.3s}.ob-flota.f2{right:12%;bottom:40px;animation-delay:-2.6s}
+@keyframes orbita{50%{transform:translateY(-12px) rotate(6deg)}}
+.ob-txt{text-align:center;display:flex;flex-direction:column;gap:8px}
+.ob-temas{display:flex;flex-direction:column;gap:12px}
+.ob-tema{display:flex;align-items:center;gap:14px;text-align:left;border:0;border-radius:24px;padding:16px;background:var(--c);color:#fff;box-shadow:0 8px 0 rgba(0,0,0,.25);animation:aparece .5s cubic-bezier(.2,1.2,.4,1) both;transition:transform .15s}
+.ob-tema:hover{transform:translateY(-3px)}
+.ob-tema b{display:block;font-size:1.2rem}.ob-tema small{opacity:.9}
+.ob-ico{width:58px;height:58px;flex:none;border-radius:18px;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.ob-ico svg{width:44px;height:44px}.ob-ico.grande{width:76px;height:76px}.ob-ico.grande svg{width:60px;height:60px}
+.ob-chip{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;background:var(--c);color:#fff;border-radius:999px;padding:4px 14px 4px 4px;font-weight:700}
+.ob-chip svg{width:30px;height:30px}
+.ob-metas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ob-meta{border:2px solid var(--line);background:var(--panel);border-radius:20px;padding:14px 8px;display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center}
+.ob-meta b{font-size:1.05rem}.ob-meta small{color:var(--muted);font-size:.8rem}
+.ob-meta[aria-pressed="true"]{border-color:var(--naranja);background:rgba(252,94,49,.15)}
+.ob-ruta{background:linear-gradient(160deg,var(--c),#1f1a46);border-radius:26px;padding:18px;color:#fff;display:flex;flex-direction:column;gap:14px;animation:aparece .6s both}
+.ob-ruta-top{display:flex;gap:14px;align-items:center}.ob-ruta-top h2{font-family:var(--body);text-transform:none;font-size:1.4rem}
+.ob-camino{display:flex;flex-direction:column;gap:10px}
+.ob-camino div{display:flex;align-items:center;gap:10px;opacity:.6}
+.ob-camino i{width:18px;height:18px;border-radius:50%;border:3px solid #fff}
+.ob-camino .conv{opacity:.85}.ob-camino .conv i{background:#fff}
+.ob-camino .aqui{opacity:1;font-weight:700}.ob-camino .aqui i{background:#ffb020;border-color:#ffb020;box-shadow:0 0 0 6px rgba(255,176,32,.3)}
+.islas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:sticky;top:69px;z-index:4;background:var(--bg);padding:6px 0}
+.isla{border:2px solid transparent;background:var(--panel);border-radius:20px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink)}
+.isla.activa{border-color:var(--c);background:color-mix(in srgb,var(--c) 22%,var(--panel))}
+.isla b{font-size:.9rem}.isla small{font-size:.72rem;font-weight:600}
+.isla small.pend{color:#ffb020}.isla small.ok{color:var(--verde)}
+.anillo{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--c) calc(var(--p)*1%),rgba(255,255,255,.12) 0)}
+.anillo svg{width:40px;height:40px;background:var(--panel);border-radius:50%;padding:4px}
+.mundo.plano .mundo-head small{opacity:.8}
+.temas-av{display:flex;flex-direction:column;gap:8px}
+.tav{display:flex;align-items:center;gap:12px;background:var(--ink);color:#231f1c;border:0;border-radius:20px;padding:10px 14px}
+.tav .ob-ico{width:44px;height:44px;background:color-mix(in srgb,var(--c) 18%,#fff)}.tav .ob-ico svg{width:34px;height:34px}
+.tav .meta{display:block;margin-top:6px;background:#e7dfd7}.tav small{font-weight:700}
 </style>
 </head>
 <body>
@@ -314,7 +356,7 @@ body.connav .app{padding-bottom:96px}
     <div id="menu" class="menu" hidden></div>
   </header>
   <main id="v"></main>
-  <footer>MVP v1.5.0 · 26/11/2026 · MandarinaTec</footer>
+  <footer>MVP v1.6.0 · 26/11/2026 · MandarinaTec</footer>
 </div>
 <div id="hoja" hidden role="dialog" aria-label="Detalle"></div>
 <nav id="nav" hidden aria-label="Secciones"><div>
@@ -332,11 +374,27 @@ body.connav .app{padding-bottom:96px}
 const SUPABASE_URL = "https://jjumtsblbnaqcqfvzngk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_TRUaOqfFxJtRKE2kpXu7fA_Foh6H2nY";
 
-const MUNDOS=[
- {n:"Mundo Principiante",c:"#3f9a37",sub:"Lo esencial, paso a paso"},
- {n:"Mundo Intermedio",c:"#2054e5",sub:"Trucos para ahorrar tiempo"},
- {n:"Mundo Avanzado",c:"#5b3ad6",sub:"La IA a tu favor"}
-];
+const NIVELES=["Principiante","Intermedio","Avanzado"];
+const MUNDOS=NIVELES.map(n=>({n}));   // compatibilidad
+const TEMAS={
+ ia:{n:"Inteligencia Artificial",corto:"IA",c:"#5b46e0",sub:"Pídele, elige y revisa lo que hace la IA",
+   dia:["#7d6af0","#5b46e0","#3f2fb0"],noche:["#2e2470","#241b5c","#1a1346"],
+   ico:'<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="tia" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b9a8ff"/><stop offset="1" stop-color="#5b46e0"/></linearGradient></defs><rect x="10" y="14" width="44" height="36" rx="12" fill="url(#tia)"/><rect x="18" y="24" width="28" height="14" rx="7" fill="#1f1a46"/><circle cx="26" cy="31" r="3.5" fill="#7cf0ff"/><circle cx="38" cy="31" r="3.5" fill="#7cf0ff"/><path d="M32 14V7" stroke="#b9a8ff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="6" r="3.5" fill="#ffb020"/><rect x="4" y="26" width="6" height="12" rx="3" fill="#8f7cf6"/><rect x="54" y="26" width="6" height="12" rx="3" fill="#8f7cf6"/><path d="M14 18h20" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/></svg>'},
+ tecno:{n:"Tecnología",corto:"Tecnología",c:"#2054e5",sub:"Seguridad, nube y cómo funciona lo digital",
+   dia:["#4f7bff","#2054e5","#173da8"],noche:["#1d2f73","#16255c","#101b45"],
+   ico:'<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ttc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#2054e5"/></linearGradient></defs><rect x="16" y="6" width="32" height="52" rx="8" fill="#1d2a52"/><rect x="19" y="11" width="26" height="40" rx="4" fill="url(#ttc)"/><path d="M32 20l9 4v7c0 6-4 10-9 12-5-2-9-6-9-12v-7z" fill="#fff" opacity=".92"/><path d="M28 31l3 3 6-6" stroke="#2054e5" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="54.5" r="1.8" fill="#8fd3ff"/></svg>'},
+ herr:{n:"Herramientas",corto:"Herramientas",c:"#3f9a37",sub:"Atajos, documentos, Excel y automatización",
+   dia:["#5cbf6a","#3f9a37","#2c7327"],noche:["#1d4a26","#163b1e","#102c16"],
+   ico:'<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="thr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a8ec9c"/><stop offset="1" stop-color="#3f9a37"/></linearGradient></defs><rect x="8" y="10" width="40" height="44" rx="6" fill="#fff"/><path d="M8 22h40M22 10v44M35 10v44M8 34h40M8 46h40" stroke="#cfe8cb" stroke-width="2"/><rect x="8" y="10" width="40" height="12" rx="6" fill="url(#thr)"/><circle cx="46" cy="44" r="12" fill="#ffb020"/><path d="M46 37v14M39 44h14" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>'}
+};
+const TEMA_IDS=["ia","tecno","herr"];
+let PT={}, TEMA_MAPA=null;
+const clave=r=>r.mundo*100+r.pos;
+const retosTema=t=>RETOS.filter(r=>r.tema===t&&r.tipo!=="secreto").sort((a,b)=>clave(a)-clave(b));
+const sigDe=t=>{const x=PT[t];return x&&x.siguiente_reto?RETOS.find(r=>r.orden===x.siguiente_reto):null};
+const hechoR=r=>{const x=PT[r.tema];if(!x)return false;const sg=sigDe(r.tema);return !sg||clave(r)<clave(sg)};
+const hoyListo=t=>PT[t]&&PT[t].ultimo_dia===HOY;
+const avanceTema=t=>{const rs=retosTema(t),x=PT[t];if(!x)return [0,rs.length];const d=rs.filter(r=>r.mundo>=x.nivel_inicial);return [d.filter(hechoR).length,d.length]};
 const ERRORES={
  ya_completaste_hoy:"Ya hiciste el reto de hoy. Vuelve mañana para el siguiente.",
  reto_bloqueado:"Ese reto todavía no está abierto.",
@@ -348,8 +406,10 @@ const ERRORES={
  guia_ya_obtenida:"Esa guía ya es tuya. Está en Mis guías.",
  cofre_bloqueado:"Todavía no llegas a ese cofre.",
  cofre_ya_abierto:"Ese cofre ya lo abriste.",
+ falta_parche_v15:"Falta aplicar el parche v1.5 en Supabase. Avísale al equipo.",
  requiere_cuenta:"Guarda tu cuenta con correo y contraseña para canjear premios.",
  premio_ya_solicitado:"Ya solicitaste ese premio. El equipo te contactará por correo.",
+ cofre_inexistente:"Ese cofre ya no está disponible.",
  maximo_protectores:"Ya tienes 2 protectores, el máximo que se puede guardar."
 };
 const $=s=>document.querySelector(s), V=$("#v");
@@ -452,9 +512,9 @@ const iconoDe=x=>x.tipo==="premio"?ICONOS.tv:x.tipo==="guia"?ICONOS.guia("#4f7bf
 function catalogo(){
   return [...PREMIOS.map(x=>({tipo:"premio",codigo:x.codigo,nombre:x.nombre,desc:x.descripcion,costo:x.costo,aliado:x.aliado,tengo:SOLIC.has(x.codigo)})),
           ...GUIAS.map(g=>({tipo:"guia",codigo:g.codigo,nombre:g.titulo,desc:g.resumen,costo:g.costo,tengo:MIAS.has(g.codigo),cofre:COFRES.some(c=>c.guia_codigo===g.codigo&&!ABIERTOS.has(c.id))})),
-          ...RECOMP.map(r=>({tipo:"ayuda",codigo:r.codigo,nombre:r.nombre,desc:r.descripcion,costo:r.costo}))];
+          ...RECOMP.filter(r=>r.codigo!=="nivel_secreto"||RETOS.some(x=>x.tipo==="secreto")).map(r=>({tipo:"ayuda",codigo:r.codigo,nombre:r.nombre,desc:r.descripcion,costo:r.costo}))];
 }
-const META=()=>{const m=lsG("mt_meta");return m?catalogo().find(x=>x.tipo+":"+x.codigo===m&&!x.tengo):null};
+const META=()=>{const m=P.meta_tienda;return m?catalogo().find(x=>x.tipo+":"+x.codigo===m&&!x.tengo):null};
 const diasPara=c=>{const f=Math.max(0,c-P.mandarinas);return f?Math.ceil(f/(RITMO||40)):0};
 async function calcRitmo(){ // promedio ganado por día activo en las últimas 2 semanas
   const d=new Date(HOY+"T12:00:00");d.setDate(d.getDate()-14);
@@ -515,11 +575,12 @@ function vTienda(msg){
   const C=$("#cuenta"), fin=P.mandarinas;
   if(QUIETO||fin<5)C.textContent=num0(fin); else {const t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/700);C.textContent=num0(Math.round(fin*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
   V.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{TAB=b.dataset.tab;vTienda()});
-  V.querySelectorAll("[data-meta]").forEach(b=>b.onclick=()=>{const v=b.dataset.meta;lsS("mt_meta",lsG("mt_meta")===v?null:v);vTienda(lsG("mt_meta")?"Meta guardada. Dino te dirá cuánto falta.":"")});
+  V.querySelectorAll("[data-meta]").forEach(b=>b.onclick=async()=>{const v=b.dataset.meta, nueva=P.meta_tienda===v?"":v;b.disabled=true;
+    try{P=await rpc("guardar_pref",{p_meta:nueva,p_tour:null})}catch(e){}vTienda(nueva?"Meta guardada. Dino te dirá cuánto falta.":"")});
   const canje=(sel,fn,ok)=>V.querySelectorAll(sel).forEach(b=>b.onclick=async()=>{b.disabled=true;
     const card=b.closest(".prod2");
     try{await fn(b);if(card){card.classList.add("canjeado");await new Promise(r=>setTimeout(r,QUIETO?0:650))}lluvia(22);
-        const m=lsG("mt_meta");if(m&&card&&card.querySelector(`[data-meta="${m}"]`))lsS("mt_meta",null);vTienda(ok(b))}
+        const m=P.meta_tienda;if(m&&card&&card.querySelector(`[data-meta="${m}"]`)){try{P=await rpc("guardar_pref",{p_meta:"",p_tour:null})}catch(e){}}vTienda(ok(b))}
     catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
   canje("[data-c]",b=>canjea(b.dataset.c,b.dataset.r?+b.dataset.r:null),b=>b.dataset.r?"Nivel secreto abierto. Juégalo desde el mapa.":"Listo, canjeado.");
   canje("[data-g]",async b=>{P=await rpc("canjear_guia",{p_codigo:b.dataset.g});MIAS.add(b.dataset.g)},()=>"Guía canjeada. Ya está en Mis guías.");
@@ -529,7 +590,7 @@ function vTienda(msg){
   if($("#hist"))sb.from("canjes").select("codigo,costo,creado").order("creado",{ascending:false}).limit(8).then(({data})=>{
     const H=$("#hist");if(!H)return;
     H.innerHTML=data&&data.length?data.map(h=>`<div class="fila"><span>${NOMBRE_CANJE[h.codigo]||h.codigo} · ${new Date(h.creado).toLocaleDateString("es")}</span><b>−${num0(h.costo)}</b></div>`).join(""):'<p class="muted">Todavía no canjeas nada.</p>'});
-  if(!lsG("mt_tour_tienda")&&!msg)setTimeout(()=>tourTienda(0),QUIETO?0:500);
+  if(!P.tour_tienda&&!msg)setTimeout(()=>tourTienda(0),QUIETO?0:500);
   window.scrollTo(0,0);
 }
 /* Recorrido guiado por Dino (la primera vez) */
@@ -539,7 +600,7 @@ const TOUR=[["#tSaldo","Estas son tus mandarinas. Las ganas al completar retos, 
 function tourTienda(n){
   const prev=document.querySelector(".tour-luz");if(prev)prev.classList.remove("tour-luz");
   let O=$("#tourCapa");
-  if(n>=TOUR.length){if(O)O.remove();lsS("mt_tour_tienda","1");return}
+  if(n>=TOUR.length){if(O)O.remove();if(!P.tour_tienda){P.tour_tienda=true;rpc("guardar_pref",{p_meta:null,p_tour:true}).then(x=>{if(x)P=x}).catch(()=>{})}return}
   const [sel,txt,pose]=TOUR[n], el=document.querySelector(sel);
   if(!el)return tourTienda(n+1);
   el.classList.add("tour-luz");el.scrollIntoView({block:"center",behavior:QUIETO?"auto":"smooth"});
@@ -579,17 +640,19 @@ async function vGuia(codigo){
 /* ---------- Perfil ---------- */
 function vPerfil(){
   setNav("perfil");stats();
-  const MAIN=RETOS.filter(r=>r.tipo!=="secreto"), desde=MAIN.filter(r=>r.mundo>=P.nivel_inicial), hechos=desde.filter(r=>r.orden<P.siguiente_reto).length;
-  const pct=desde.length?Math.round(hechos/desde.length*100):0, sig=MAIN.find(r=>r.orden===P.siguiente_reto), yaHoy=P.ultimo_dia===HOY;
+  let hechos=0,total=0; TEMA_IDS.forEach(t=>{const [h,n]=avanceTema(t);hechos+=h;total+=n});
+  const tp=P.tema_principal||"ia", orden=[tp,...TEMA_IDS.filter(t=>t!==tp)], tHoy=orden.find(t=>sigDe(t)&&!hoyListo(t));
+  const pct=total?Math.round(hechos/total*100):0, sig=tHoy?sigDe(tHoy):null, yaHoy=!tHoy, todo=TEMA_IDS.every(t=>!sigDe(t));
   const nombre=ANON?"":(P.usuario||"").replace(/^./,c=>c.toUpperCase());
   V.innerHTML=`
    <div class="hola"><img src="dino-cara.webp" alt=""><div><h2>Hola${nombre?", "+esc(nombre):""}</h2><p class="muted">Avance: ${pct}% del camino${ANON?" · Invitado":""}</p></div></div>
-   <div class="destacada"><div style="flex:1"><div style="font-weight:700;opacity:.85;font-size:.85rem">${!sig?"Camino completado":yaHoy?"Listo por hoy":"Tu reto de hoy"}</div>
-      <h3>${!sig?"Terminaste todos los mundos":esc(sig.titulo)}</h3><p>${!sig?"Repasa cuando quieras desde el mapa.":yaHoy?"Se abre mañana.":"Cinco minutos y sumas a tu racha."}</p>
+   <div class="destacada"><div style="flex:1"><div style="font-weight:700;opacity:.85;font-size:.85rem">${todo?"Camino completado":yaHoy?"Listo por hoy":"Tu reto de hoy · "+esc(TEMAS[tHoy].corto)}</div>
+      <h3>${todo?"Terminaste los tres temas":yaHoy?"Hiciste los retos de hoy":esc(sig.titulo)}</h3><p>${todo?"Repasa cuando quieras desde el mapa.":yaHoy?"Mañana se abren los siguientes.":"Cinco minutos y sumas a tu racha."}</p>
       <button class="ir" id="irMapa" aria-label="Ir al mapa">→</button></div><img src="dino-guia.webp" alt=""></div>
    <div class="cifras"><div class="cifra" style="--k:#fc5e31"><span>Retos</span><b>${hechos}</b>completados</div>
      <div class="cifra" style="--k:#5b46e0"><span>Racha</span><b>${rachaViva()}</b>${rachaViva()===1?"día seguido":"días seguidos"}</div></div>
-   <div class="semana"><h4>Tu semana</h4><div class="barras" id="sem">${"LMXJVSD".split("").map(d=>`<div><i></i>${d}</div>`).join("")}</div></div>
+   <div class="temas-av">${TEMA_IDS.map(t=>{const [h,n]=avanceTema(t);return `<button class="tav" data-irt="${t}" style="--c:${TEMAS[t].c}"><span class="ob-ico">${TEMAS[t].ico}</span><span style="flex:1;text-align:left"><b>${esc(TEMAS[t].n)}</b><span class="meta"><i style="width:${n?Math.round(h/n*100):0}%;background:var(--c)"></i></span></span><small>${h}/${n}</small></button>`}).join("")}</div>
+   <div class="semana"><h4>Tu semana <small id="metaSem" style="font-weight:500;color:#6b635c"></small></h4><div class="barras" id="sem">${"LMXJVSD".split("").map(d=>`<div><i></i>${d}</div>`).join("")}</div></div>
    <div class="cifras"><div class="cifra" style="--k:#3f9a37"><span>Mandarinas</span><b>${num0(P.mandarinas)}</b>en tu saldo</div>
      <div class="cifra" style="--k:#2054e5"><span>Guías</span><b>${MIAS.size}</b>en tu biblioteca</div></div>
    ${ANON?`<div class="card" style="border-color:var(--amarillo)"><p><b>Estás jugando como invitado.</b> Si borras el navegador o cambias de teléfono, pierdes tu racha.</p>
@@ -600,19 +663,21 @@ function vPerfil(){
      <p class="muted">En automático se hace de noche a las 6 de la tarde, según tu hora.</p></div>
    ${P.es_tester?`<div class="demo"><p class="muted"><b>Controles de prueba.</b> Solo los ve el equipo (es_tester en Supabase).</p><div>
      <button class="btn sec" data-t="saltar_dia">Saltar al día siguiente</button><button class="btn sec" data-t="reiniciar">Reiniciar mi progreso</button><button class="btn sec" data-t="mandarinas">+200 mandarinas</button></div></div>`:""}`;
-  $("#irMapa").onclick=vMapa;
+  $("#irMapa").onclick=()=>{if(tHoy)TEMA_MAPA=tHoy;vMapa()};
+  V.querySelectorAll("[data-irt]").forEach(b=>b.onclick=()=>{TEMA_MAPA=b.dataset.irt;vMapa()});
   if(ANON){$("#guardar").onclick=()=>vGuardar(vPerfil);$("#yaCuenta").onclick=()=>vLogin(vPerfil)}
   else $("#salir").onclick=async()=>{await sb.auth.signOut();P=null;ANON=false;setNav(null);vEntrada()};
   V.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{MODO=b.dataset.m||null;try{MODO?localStorage.setItem("mt_modo",MODO):localStorage.removeItem("mt_modo")}catch(e){}vPerfil()});
   V.querySelectorAll("[data-t]").forEach(b=>b.onclick=async()=>{cargando();
     try{await rpc("tester_accion",{p_accion:b.dataset.t});await cargarTodo()}catch(e){return fallo(e)}
-    P.nivel_inicial==null?vTest():b.dataset.t==="saltar_dia"?vMapa():vPerfil()});
+    P.nivel_inicial==null?vOnboarding():b.dataset.t==="saltar_dia"?vMapa():vPerfil()});
   // Barras de la semana (lunes a domingo) con las mandarinas ganadas cada día
   const h=new Date(HOY+"T12:00:00"), lun=new Date(h); lun.setDate(h.getDate()-((h.getDay()+6)%7));
   const f=d=>d.toISOString().slice(0,10), dias7=[...Array(7)].map((_,k)=>{const d=new Date(lun);d.setDate(lun.getDate()+k);return f(d)});
   sb.from("intentos").select("dia,puntos").gte("dia",dias7[0]).then(({data})=>{
     const S=$("#sem");if(!S)return;
     const tot=dias7.map(d=>(data||[]).filter(x=>x.dia===d).reduce((a,x)=>a+x.puntos,0)), mx=Math.max(60,...tot);
+    const M=$("#metaSem");if(M)M.textContent=`· ${tot.filter(x=>x>0).length} de ${P.meta_semanal||5} días de tu meta`;
     S.innerHTML=dias7.map((d,k)=>`<div><i class="${tot[k]?"on":""}" style="height:${tot[k]?Math.max(18,tot[k]/mx*100):8}%">${tot[k]?`<em>${tot[k]}</em>`:""}</i><span ${d===HOY?'style="color:#fc5e31"':""}>${"LMXJVSD"[k]}</span></div>`).join("");
   });
   window.scrollTo(0,0);
@@ -622,7 +687,7 @@ async function cargarTodo(){
   const u=(await sb.auth.getUser()).data.user, uid=u.id; ANON=!!u.is_anonymous;
   const [p,r,h,rc,ds,it]=await Promise.all([
     sb.from("perfiles").select("*").eq("id",uid).single(),
-    sb.from("retos").select("orden,mundo,titulo,pasos,tipo").order("orden"),
+    sb.from("retos").select("*").order("orden"),
     sb.rpc("hoy_usuario"),
     sb.from("recompensas").select("*").order("orden"),
     sb.from("desbloqueos").select("reto_orden"),
@@ -637,6 +702,10 @@ async function cargarTodo(){
   GUIAS=g; MIAS=new Set(mg.map(x=>x.codigo)); COFRES=cf; ABIERTOS=new Set(ca.map(x=>x.cofre_id));
   const [pr,so]=await Promise.all([opc(sb.from("premios").select("*").order("orden")),opc(sb.from("solicitudes_premio").select("codigo"))]);
   PREMIOS=pr; SOLIC=new Set(so.map(x=>x.codigo));
+  const pts=await opc(sb.from("progreso_tema").select("*"));
+  PT={}; pts.forEach(x=>PT[x.tema]=x);
+  if(!RETOS.some(r=>r.tema)) throw new Error("falta_parche_v15");
+  if(!TEMA_MAPA) TEMA_MAPA=P.tema_principal||"ia";
 }
 
 /* ---------- Entrada: jugar sin registro ---------- */
@@ -728,34 +797,70 @@ function vGuardar(despues){
   };
 }
 
-/* ---------- Test de nivel ---------- */
-function vTest(){
-  setNav(null);
-  let i=0,pts=0;
+/* ---------- Onboarding ---------- */
+const PREG={
+ ia:[["¿Has usado un chat de IA?",["Nunca o casi nunca","A veces, para cosas simples","Sí, para trabajar"]],
+     ["Si te digo «prompt», ¿qué piensas?",["Ni idea","Lo que le escribes a la IA","Tengo los míos guardados"]],
+     ["¿Revisas lo que responde la IA?",["No sabría cómo","A veces","Siempre verifico los datos"]]],
+ tecno:[["¿Cómo creas tus contraseñas?",["Uso la misma en todo","Las cambio un poco","Uso un gestor o frases largas"]],
+     ["Te llega un enlace con un premio que no pediste. ¿Qué haces?",["Lo abro a ver qué es","Dudo, pero a veces lo abro","Lo ignoro o lo reporto"]],
+     ["¿Sabes qué es «la nube»?",["No","Más o menos","Sí, la uso a diario"]]],
+ herr:[["Te piden pasar un documento a PDF. ¿Qué haces?",["Le pido ayuda a alguien","Busco cómo hacerlo","Lo hago sin pensarlo"]],
+     ["¿Cómo te llevas con las hojas de cálculo?",["Me cuestan","Sumo y ordeno","Uso fórmulas y filtros"]],
+     ["¿Has automatizado alguna tarea?",["No sabía que se podía","Lo intenté una vez","Sí, varias"]]]};
+const METAS=[[3,"Tranquilo","3 días por semana"],[5,"Constante","5 días por semana"],[7,"Intenso","Todos los días"]];
+function vTest(){vOnboarding()}
+function vOnboarding(){
+  setNav(null);stats();
+  const E={paso:0,tema:null,q:0,pts:0,meta:5};
+  const puntos=()=>`<div class="ob-puntos" aria-hidden="true">${[0,1,2,3].map(i=>`<i class="${i<=E.paso?"on":""}"></i>`).join("")}</div>`;
   const pinta=()=>{
-    V.innerHTML=`
-     <div class="barra"><span style="width:${i/TEST.length*100}%"></span></div>
-     ${i==0?`${hero("lupa")}`:""}
-     ${dino(i==0?`Hola${P.usuario?`, <b>${esc(P.usuario)}</b>`:""}. Soy Dino. Cinco preguntas para saber por dónde arrancas. Aquí nadie califica.`:"Vas bien. Responde con la verdad, que nadie está mirando.")}
-     <div class="card"><div class="eyebrow">Pregunta ${i+1} de ${TEST.length}</div><h3>${TEST[i][0]}</h3>
-      <div class="opts">${TEST[i][1].map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div></div>
-     ${i==0&&ANON?`<button class="btn sec" id="yaCuenta">¿Ya tienes cuenta? Entra aquí</button>`:""}`;
-    V.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{pts+=+b.dataset.k;i++;i<TEST.length?pinta():fin()});
-    if($("#yaCuenta"))$("#yaCuenta").onclick=()=>vLogin(vTest);
-  };
-  const fin=async()=>{
-    const m=pts<=3?0:pts<=7?1:2;
-    cargando("Guardando tu punto de partida…");
-    try{P=await rpc("fijar_nivel",{p_nivel:m,p_zona:Intl.DateTimeFormat().resolvedOptions().timeZone||"America/Caracas"});
-        HOY=(await sb.rpc("hoy_usuario")).data||HOY}catch(e){return fallo(e)}
-    stats();
-    V.innerHTML=`
-     ${hero("guia","salta")}
-     <div class="card"><div class="eyebrow">Tu punto de partida</div><h2>${MUNDOS[P.nivel_inicial].n}</h2>
-      <p>${["Arrancamos desde lo básico. Es el mejor lugar para empezar: aquí se arman los trucos que usan todos los demás.","Ya te defiendes. Te salto lo básico y vamos directo a los trucos para ahorrar tiempo.","Ya dominas lo básico. Vamos a lo avanzado: elegir IA, automatizar y entender qué es una API."][P.nivel_inicial]}</p>
-      <p class="muted">Los mundos anteriores quedan abiertos por si quieres repasar.</p>
-      <button class="btn" id="go">Ver mi mapa</button></div>`;
-    $("#go").onclick=vMapa;
+    if(E.paso===0){
+      V.innerHTML=`${puntos()}<div class="ob-hero">
+          ${TEMA_IDS.map((t,i)=>`<div class="ob-flota f${i}" style="background:${TEMAS[t].c}">${TEMAS[t].ico}</div>`).join("")}
+          <img src="dino-guia.webp" alt="Dino, la mandarina de MandarinaTec"></div>
+        <div class="ob-txt"><div class="eyebrow">Bienvenida</div><h1>Hola, soy Dino</h1>
+          <p>Te acompaño a dominar la tecnología del trabajo con un reto corto al día. Tres temas, a tu ritmo.</p></div>
+        <button class="btn" id="sig">Empezar</button>
+        ${ANON?`<button class="btn sec" id="yaCuenta">¿Ya tienes cuenta? Entra aquí</button>`:""}`;
+      $("#sig").onclick=()=>{E.paso=1;pinta()};
+      if($("#yaCuenta"))$("#yaCuenta").onclick=()=>vLogin(vOnboarding);
+    }else if(E.paso===1){
+      V.innerHTML=`${puntos()}${dino("¿Por dónde quieres empezar? Los otros temas quedan abiertos para cuando quieras.")}
+        <div class="ob-temas">${TEMA_IDS.map((t,i)=>`<button class="ob-tema" data-t="${t}" style="--c:${TEMAS[t].c};animation-delay:${i*90}ms">
+          <span class="ob-ico">${TEMAS[t].ico}</span><span><b>${TEMAS[t].n}</b><small>${TEMAS[t].sub}</small></span></button>`).join("")}</div>`;
+      V.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{E.tema=b.dataset.t;E.paso=2;E.q=0;E.pts=0;pinta()});
+    }else if(E.paso===2){
+      const Q=PREG[E.tema][E.q], T=TEMAS[E.tema];
+      V.innerHTML=`${puntos()}<div class="ob-chip" style="--c:${T.c}">${T.ico}<span>${T.n}</span></div>
+        ${dino(E.q===0?"Tres preguntas rápidas para saber desde dónde empiezas. Aquí no hay respuestas malas.":"Vas bien. Responde con sinceridad.")}
+        <div class="card"><div class="eyebrow">Pregunta ${E.q+1} de 3</div><h3>${Q[0]}</h3>
+        <div class="opts">${Q[1].map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div></div>
+        <button class="btn sec" id="atras">Cambiar de tema</button>`;
+      V.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{E.pts+=+b.dataset.k;E.q++;if(E.q<3)pinta();else{E.paso=3;pinta()}});
+      $("#atras").onclick=()=>{E.paso=1;pinta()};
+    }else if(E.paso===3){
+      V.innerHTML=`${puntos()}${hero("reto")}
+        <div class="ob-txt"><div class="eyebrow">Tu meta</div><h2>¿Cuántos días por semana quieres practicar?</h2><p class="muted">Cada reto toma unos 5 minutos. Puedes cambiarla después.</p></div>
+        <div class="ob-metas">${METAS.map(m=>`<button class="ob-meta" data-m="${m[0]}" aria-pressed="${E.meta===m[0]}"><b>${m[1]}</b><small>${m[2]}</small></button>`).join("")}</div>
+        <button class="btn" id="sig">Ver mi ruta</button>`;
+      V.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{E.meta=+b.dataset.m;pinta()});
+      $("#sig").onclick=()=>{E.paso=4;pinta()};
+    }else{
+      const nv=E.pts<=2?0:E.pts<=4?1:2, T=TEMAS[E.tema];
+      V.innerHTML=`<div class="ob-ruta" style="--c:${T.c}">
+          <div class="ob-ruta-top"><span class="ob-ico grande">${T.ico}</span><div><small>Empiezas en</small><h2>${T.n}</h2><b>Nivel ${NIVELES[nv]}</b></div></div>
+          <div class="ob-camino">${NIVELES.map((n,i)=>`<div class="${i===nv?"aqui":i<nv?"conv":""}"><i></i><span>${n}${i<nv?" · convalidado":i===nv?" · empiezas aquí":""}</span></div>`).join("")}</div>
+          <p>Meta: <b>${METAS.find(m=>m[0]===E.meta)[2].toLowerCase()}</b></p></div>
+        ${dino(["Empezamos por lo esencial. Es la mejor base para todo lo demás.","Ya tienes una base. Te salto lo básico y vamos a lo práctico.","Vas bien encaminado. Vamos directo a lo avanzado."][nv]+" Los otros dos temas te esperan desde Principiante.")}
+        <button class="btn" id="go">Ver mi mapa</button>`;
+      lluvia(30);
+      $("#go").onclick=async()=>{cargando("Preparando tu mapa…");
+        try{P=await rpc("configurar_inicio",{p_tema:E.tema,p_nivel:nv,p_meta:E.meta,p_zona:Intl.DateTimeFormat().resolvedOptions().timeZone||"America/Caracas"});
+            await cargarTodo();TEMA_MAPA=E.tema}catch(e){return fallo(e)}
+        AVANZO=false;vMapa();};
+    }
+    window.scrollTo(0,0);
   };
   pinta();
 }
@@ -764,8 +869,7 @@ function vTest(){
 let AVANZO=false, MODO=null;                 // MODO: null automático | "dia" | "noche"
 try{MODO=localStorage.getItem("mt_modo")||null}catch(e){}
 const esNoche=()=>MODO?MODO==="noche":(h=>h<6||h>=18)(new Date().getHours());
-const PAL={dia:{fondo:["#3fa66b","#2f62e8","#6a4be0"]},noche:{fondo:["#1c5a42","#1b3891","#3a2a8a"]}};
-const FRASES=["Un reto al día es suficiente. La constancia hace el resto.","Los cofres del camino muestran su premio antes de abrirse.","En la tienda puedes canjear guías, ayudas y premios.","Toca cualquier nivel para ver de qué trata.","Tu avance de la semana está en la pestaña Perfil."];
+const FRASES=["Un reto al día en cada tema: hasta tres al día si quieres avanzar más rápido.","Los cofres del camino muestran su premio antes de abrirse.","En la tienda puedes canjear guías, ayudas y premios.","Toca cualquier nivel para ver de qué trata.","Tu avance de la semana está en la pestaña Perfil."];
 const arbolSVG=()=>`<svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="22" fill="rgba(255,255,255,.14)"/><path d="M23 36V22M23 27l-5-4M23 24l5-4" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M23 8c6 0 10 4 10 9s-4 8-10 8-10-3-10-8 4-9 10-9z" fill="none" stroke="#fff" stroke-width="2.4"/></svg>`;
 const ICO={cand:'<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',ok:'<svg viewBox="0 0 24 24"><path d="M5 13l4.5 4.5L19 7"/></svg>',band:'<svg viewBox="0 0 24 24"><path d="M6 21V4M6 5h11l-2.5 4L17 13H6"/></svg>',reloj:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>'};
 const cofreSVG=ab=>`<svg viewBox="0 0 74 66" aria-hidden="true"><rect x="8" y="30" width="58" height="30" rx="6" fill="#a8521e"/><rect x="8" y="30" width="58" height="9" fill="#8a3f14"/>
@@ -774,45 +878,53 @@ const cofreSVG=ab=>`<svg viewBox="0 0 74 66" aria-hidden="true"><rect x="8" y="3
 
 function vMapa(){
   setNav("mapa");stats();
-  const noche=esNoche(), p=noche?PAL.noche:PAL.dia;
-  const MAIN=RETOS.filter(r=>r.tipo!=="secreto"), yaHoy=P.ultimo_dia===HOY, sig=MAIN.find(r=>r.orden===P.siguiente_reto);
+  const noche=esNoche(), T=TEMA_MAPA&&TEMAS[TEMA_MAPA]?TEMA_MAPA:"ia", TT=TEMAS[T], fondo=noche?TT.noche:TT.dia;
+  const MAIN=retosTema(T), x0=PT[T]||{nivel_inicial:0}, yaHoy=hoyListo(T), sig=sigDe(T);
   const X=[28,68,36,72,30,66], PASO=128, Y0=150, ultimo=MAIN[MAIN.length-1];
   const dinoEn=sig||ultimo, num=r=>MAIN.indexOf(r)+1;
-  const msgHoy=!sig?`Completaste todos los mundos${P.usuario?`, <b>${esc(P.usuario)}</b>`:""}. Ya eres de los que explican.`
-     :yaHoy?`Listo por hoy. Mañana te espero con <b>${esc(sig.titulo)}</b>.`:`Hoy toca <b>${esc(sig.titulo)}</b>. Toca el círculo naranja.`;
+  const pendientes=TEMA_IDS.filter(t=>sigDe(t)&&!hoyListo(t)&&t!==T);
+  const msgHoy=!sig?`Completaste ${esc(TT.n)}. ${pendientes.length?`Te espera ${esc(TEMAS[pendientes[0]].n)}.`:"Ya eres de los que explican."}`
+     :yaHoy?`Listo en ${esc(TT.corto)} por hoy.${pendientes.length?` Aún puedes hacer el reto de <b>${esc(TEMAS[pendientes[0]].corto)}</b>.`:" Mañana seguimos."}`
+     :`Hoy toca <b>${esc(sig.titulo)}</b>. Toca el nivel amarillo.`;
   let html=ANON?`<div class="card" style="border-color:var(--amarillo)"><p><b>Estás jugando como invitado.</b> Si borras el navegador o cambias de teléfono, pierdes tu racha.</p><div class="ayuda" style="margin-top:12px"><button class="btn" id="guardar">Guardar mi avance</button><button class="btn sec" id="yaCuenta">Ya tengo cuenta</button></div></div>`:"";
-  MUNDOS.forEach((m,w)=>{
+  // Islas: los tres temas
+  html+=`<div class="islas" role="tablist" aria-label="Temas">${TEMA_IDS.map(t=>{const [h,n]=avanceTema(t), sg=sigDe(t), lst=hoyListo(t);
+    const est=!sg?"Completado":lst?"Hecho hoy":"Reto listo";
+    return `<button class="isla ${t===T?"activa":""}" role="tab" aria-selected="${t===T}" data-tema="${t}" style="--c:${TEMAS[t].c}">
+      <span class="anillo" style="--p:${n?Math.round(h/n*100):0}">${TEMAS[t].ico}</span><b>${esc(TEMAS[t].corto)}</b>
+      <small class="${!sg||lst?"ok":"pend"}">${est}</small></button>`}).join("")}</div>`;
+  NIVELES.forEach((nombre,w)=>{
     const rs=MAIN.filter(r=>r.mundo===w); if(!rs.length)return;
     const items=[]; rs.forEach(r=>{items.push({r});COFRES.filter(c=>c.despues_de===r.orden).forEach(c=>items.push({c}))});
-    const n=items.length, H=Y0+PASO*(n-1)+120, Y=k=>Y0+PASO*k, hechos=rs.filter(r=>r.orden<P.siguiente_reto&&w>=P.nivel_inicial).length;
-    const pt=items.map((_,k)=>[X[k%6]*4,Y(k)]), d="M"+pt[0]+pt.slice(1).map((q,k)=>` C${pt[k][0]} ${pt[k][1]+PASO/2} ${q[0]} ${q[1]-PASO/2} ${q[0]} ${q[1]}`).join("");
-    html+=`<section class="mundo plano" style="background:${p.fondo[w]}"><div class="mundo-head"><div><h3>${m.n}</h3><small>${m.sub}</small></div>
-      <span>${w<P.nivel_inicial?"Convalidado":hechos+" de "+rs.length}</span></div>
-      <div class="ruta" data-w="${w}" style="height:${H}px">
+    const n=items.length, H=Y0+PASO*(n-1)+120, Y=k=>Y0+PASO*k, conv=w<x0.nivel_inicial, hechos=rs.filter(hechoR).length;
+    const pt=items.map((_,k)=>[X[k%6]*4,Y(k)]), d=n>1?"M"+pt[0]+pt.slice(1).map((q,k)=>` C${pt[k][0]} ${pt[k][1]+PASO/2} ${q[0]} ${q[1]-PASO/2} ${q[0]} ${q[1]}`).join(""):"";
+    html+=`<section class="mundo plano" style="background:${fondo[w]}"><div class="mundo-head"><div><small>${esc(TT.n)}</small><h3>${nombre}</h3></div>
+      <span>${conv?"Convalidado":hechos+" de "+rs.length}</span></div>
+      <div class="ruta" style="height:${H}px">
       <svg viewBox="0 0 400 ${H}" preserveAspectRatio="none" aria-hidden="true">
-        <g fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="2">${[0,1,2,3].map(c=>`<ellipse cx="${(c*173+w*60)%400}" cy="${(c*H/4+90)}" rx="${150+c*30}" ry="${90+c*22}"/><ellipse cx="${(c*173+w*60)%400}" cy="${(c*H/4+90)}" rx="${100+c*30}" ry="${55+c*22}"/>`).join("")}</g>
+        <g fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="2">${[0,1,2].map(c=>`<ellipse cx="${(c*173+w*60)%400}" cy="${(c*H/3+90)}" rx="${150+c*30}" ry="${90+c*22}"/><ellipse cx="${(c*173+w*60)%400}" cy="${(c*H/3+90)}" rx="${100+c*30}" ry="${55+c*22}"/>`).join("")}</g>
         ${noche?`<g fill="#fff">${items.map((_,k)=>`<circle cx="${(k*131+40)%390}" cy="${Y(k)-70}" r="1.6" opacity=".8"/><circle cx="${(k*71+220)%390}" cy="${Y(k)+50}" r="1.2" opacity=".6"/>`).join("")}</g>`:""}
-        <g fill="#000" opacity=".12">${items.map((_,k)=>`<ellipse cx="${(k*97+200)%360+20}" cy="${Y(k)+66}" rx="11" ry="7"/><ellipse cx="${(k*97+214)%360+20}" cy="${Y(k)+70}" rx="7" ry="5"/>`).join("")}</g>
-        <path d="${d}" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="4" stroke-dasharray="10 12" stroke-linecap="round"/>
+        <g fill="#000" opacity=".12">${items.map((_,k)=>`<ellipse cx="${(k*97+200)%360+20}" cy="${Y(k)+66}" rx="11" ry="7"/>`).join("")}</g>
+        ${d?`<path d="${d}" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="4" stroke-dasharray="10 12" stroke-linecap="round"/>`:""}
       </svg>`;
-    if(noche) for(let f=0;f<5;f++) html+=`<i class="lucier" style="left:${(f*37+12)%90+4}%;top:${110+(f*173)%(H-150)}px;animation-delay:${f*.5}s"></i>`;
+    if(noche) for(let f=0;f<4;f++) html+=`<i class="lucier" style="left:${(f*37+12)%90+4}%;top:${110+(f*173)%Math.max(60,H-150)}px;animation-delay:${f*.5}s"></i>`;
     items.forEach((it,k)=>{
       const x=X[k%6], lado=x<50?85:13, ladoD=x<50?80:20, y=Y(k);
       if(it.r){
-        const r=it.r, hecho=r.orden<P.siguiente_reto, actual=r.orden===P.siguiente_reto;
+        const r=it.r, hecho=hechoR(r), actual=sig&&r.orden===sig.orden;
         const cls=hecho?"hecho":actual?(yaHoy?"espera":"hoy"):"cerrado";
-        const est=w<P.nivel_inicial?"Repaso libre":hecho?"Completado":actual?(yaHoy?"Se abre mañana":"Reto de hoy"):"Bloqueado";
-        html+=`<button class="nodo blob ${cls}" style="left:${x}%;top:${y}px;--c:${p.fondo[w]}" data-o="${r.orden}" aria-label="${esc(r.titulo)}: ${est}">${hecho?ICO.ok:actual?(yaHoy?ICO.reloj:ICO.band):ICO.cand}${actual&&!yaHoy?"Empezar":"Día "+num(r)}</button>
+        const est=conv?"Repaso libre":hecho?"Completado":actual?(yaHoy?"Se abre mañana":"Reto de hoy"):"Bloqueado";
+        html+=`<button class="nodo blob ${cls}" style="left:${x}%;top:${y}px;--c:${fondo[w]}" data-o="${r.orden}" aria-label="${esc(r.titulo)}: ${est}">${hecho?ICO.ok:actual?(yaHoy?ICO.reloj:ICO.band):ICO.cand}${actual&&!yaHoy?"Empezar":"Reto "+num(r)}</button>
           <div class="tit" style="left:${x}%;top:${y+(actual&&!yaHoy?56:48)}px">${esc(r.titulo)}<small>${est}</small></div>`;
       }else{
-        const c=it.c, ab=ABIERTOS.has(c.id), listo=!ab&&P.siguiente_reto>c.despues_de, g=GUIAS.find(q=>q.codigo===c.guia_codigo);
+        const c=it.c, ab=ABIERTOS.has(c.id), dr=RETOS.find(q=>q.orden===c.despues_de), listo=!ab&&dr&&hechoR(dr), g=GUIAS.find(q=>q.codigo===c.guia_codigo);
         html+=`<button class="cofre-btn ${ab?"abierto":listo?"listo":"cerrado"}" style="left:${x}%;top:${y}px" data-cofre="${c.id}" aria-label="Cofre: ${ab?"abierto":listo?"listo para abrir":"cerrado"}">${cofreSVG(ab)}</button>
           <div class="tit" style="left:${x}%;top:${y+38}px">${g?"Cofre con guía":"Cofre"}<small>${ab?"Abierto":g?esc(g.titulo):"+"+c.mandarinas+" mandarinas"}</small></div>`;
       }
       if(it.r&&it.r===dinoEn){
         const dormido=noche&&yaHoy;
         html+=`<button class="dino-mapa ${dormido?"duerme":""}" id="dinoMapa" style="left:${ladoD}%;top:${y+30}px" data-k="${k}" aria-label="Dino">${dormido?'<span class="zzz">z z z</span>':""}<img src="dino-guia.webp" alt="Dino" ${lado>50?'style="transform:scaleX(-1)"':""}></button>
-          <div class="globo" id="globo" style="${lado>50?"right:4%":"left:4%"};top:${y-28}px">${dormido?"Zzz… ya hiciste lo de hoy. Yo también descanso.":msgHoy}</div>`;
+          <div class="globo" id="globo" style="${lado>50?"right:4%":"left:4%"};top:${y-28}px">${dormido?"Zzz… ya hiciste lo de hoy aquí. Yo también descanso.":msgHoy}</div>`;
       }else html+=`<button class="arbol plano" style="left:${lado}%;top:${y+24}px" aria-label="Árbol">${arbolSVG()}</button>`;
     });
     html+=`</div></section>`;
@@ -828,46 +940,41 @@ function vMapa(){
   V.innerHTML=html;
   V.onclick=e=>{if(!e.target.closest(".nodo,.cofre-btn"))cierraHoja()};
   if(ANON){$("#guardar").onclick=()=>vGuardar(vMapa);$("#yaCuenta").onclick=()=>vLogin(vMapa)}
+  V.querySelectorAll("[data-tema]").forEach(b=>b.onclick=()=>{TEMA_MAPA=b.dataset.tema;AVANZO=false;vMapa();const s=V.querySelector(".mundo");if(s)s.scrollIntoView({block:"start",behavior:QUIETO?"auto":"smooth"})});
 
-  // Niveles: al tocar, se abre la hoja con el detalle
   V.querySelectorAll(".nodo").forEach(b=>b.onclick=()=>{
-    const r=RETOS.find(q=>q.orden===+b.dataset.o), hecho=r.orden<P.siguiente_reto, actual=r.orden===P.siguiente_reto;
-    const h=hoja(`<div class="eyebrow">Día ${num(r)} · ${MUNDOS[r.mundo].n}</div><h3>${esc(r.titulo)}</h3>
+    const r=RETOS.find(q=>q.orden===+b.dataset.o), hecho=hechoR(r), actual=sig&&r.orden===sig.orden;
+    const h=hoja(`<div class="eyebrow">${esc(TEMAS[r.tema].corto)} · ${NIVELES[r.mundo]} · Reto ${num(r)}</div><h3>${esc(r.titulo)}</h3>
       <p class="muted">${r.pasos.length} actividades · unos 5 minutos · hasta 60 mandarinas</p>
       ${hecho?`<button class="btn" id="ir">Repasar</button>`:actual&&!yaHoy?`<button class="btn" id="ir">Empezar</button>`
-        :actual?`<p>Ya hiciste el reto de hoy. Este se abre mañana.</p>`:`<p>Termina los retos anteriores para abrirlo. Uno por día.</p>`}`);
+        :actual?`<p>Ya hiciste el reto de hoy en este tema. Este se abre mañana.</p>`:`<p>Termina los retos anteriores para abrirlo. Uno por día en cada tema.</p>`}`);
     const ir=h.querySelector("#ir"); if(ir)ir.onclick=()=>vReto(r);
   });
-  // Cofres
   const hojaCofre=c=>{
-    const ab=ABIERTOS.has(c.id), listo=!ab&&P.siguiente_reto>c.despues_de, g=GUIAS.find(q=>q.codigo===c.guia_codigo), r=MAIN.find(q=>q.orden===c.despues_de);
+    const ab=ABIERTOS.has(c.id), dr=RETOS.find(q=>q.orden===c.despues_de), listo=!ab&&dr&&hechoR(dr), g=GUIAS.find(q=>q.codigo===c.guia_codigo);
     const h=hoja(`<div class="eyebrow">Cofre de premio</div><h3>${g?"Guía: "+esc(g.titulo):"+"+c.mandarinas+" mandarinas"}</h3>
       ${g?`<p class="muted">${esc(g.resumen)}</p>`:""}
       ${ab?(g?`<button class="btn" id="lee">Leer la guía</button>`:`<p>Ya lo abriste. Las mandarinas están en tu saldo.</p>`)
-        :listo?`<button class="btn" id="abre">Abrir cofre</button>`:`<p>Completa «${esc(r?r.titulo:"el reto anterior")}» para abrirlo.</p>`}<div class="err" id="msgC" role="status"></div>`);
+        :listo?`<button class="btn" id="abre">Abrir cofre</button>`:`<p>Completa «${esc(dr?dr.titulo:"el reto anterior")}» para abrirlo.</p>`}<div class="err" id="msgC" role="status"></div>`);
     if(h.querySelector("#lee"))h.querySelector("#lee").onclick=()=>vGuia(g.codigo);
     if(h.querySelector("#abre"))h.querySelector("#abre").onclick=async ev=>{ev.target.disabled=true;
       try{P=await rpc("abrir_cofre",{p_cofre:c.id});ABIERTOS.add(c.id);if(g)MIAS.add(g.codigo);lluvia(26);vMapa();hojaCofre(c)}
       catch(e){h.querySelector("#msgC").textContent=errTxt(e,"No se pudo abrir. Prueba de nuevo.");ev.target.disabled=false}};
   };
   V.querySelectorAll(".cofre-btn").forEach(b=>b.onclick=()=>hojaCofre(COFRES.find(c=>c.id===+b.dataset.cofre)));
-  // Dino y árboles
   let nf=0, tg=0; const D=$("#dinoMapa"), ocultaGlobo=ms=>{clearTimeout(tg);tg=setTimeout(()=>{const G=$("#globo");if(G)G.hidden=true},ms)};
   if(D)ocultaGlobo(7000);
   if(D)D.onclick=()=>{const G=$("#globo");G.innerHTML=nf===0&&rachaViva()>1?`Llevas <b>${rachaViva()} días</b> seguidos. No la sueltes.`:FRASES[nf%FRASES.length];nf++;G.hidden=false;G.removeAttribute("data-ok");G.dataset.tw="";teclea(V);ocultaGlobo(5000)};
   V.querySelectorAll(".arbol").forEach(b=>b.onclick=()=>{b.classList.remove("mueve");void b.offsetWidth;b.classList.add("mueve")});
-  // Secretos
   V.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>vReto(RETOS.find(r=>r.orden===+b.dataset.s)));
   V.querySelectorAll("[data-abre]").forEach(b=>b.onclick=async()=>{b.disabled=true;
     try{await canjea("nivel_secreto",+b.dataset.abre);lluvia(16);vMapa()}
     catch(e){$("#msgSec").textContent=errTxt(e,"No se pudo abrir. Prueba de nuevo.");b.disabled=false}});
-  // Dino camina desde el nivel anterior cuando avanzas
   if(D&&AVANZO&&D.animate&&!QUIETO&&+D.dataset.k>0){
     const W=D.parentElement.clientWidth, k=+D.dataset.k, lp=X[(k-1)%6]<50?80:20, la=X[k%6]<50?80:20;
     D.animate([{transform:`translate(calc(-50% + ${(lp-la)/100*W}px),calc(-50% - ${PASO}px))`},{transform:"translate(-50%,-50%)"}],{duration:900,easing:"cubic-bezier(.3,1.3,.5,1)"});
   }
-  AVANZO=false;
-  const nd=D||V.querySelector(".nodo.hoy,.nodo.espera"); if(nd&&nd.scrollIntoView) nd.scrollIntoView({block:"center"});
+  const nd=AVANZO?D:null; AVANZO=false; if(nd&&nd.scrollIntoView) nd.scrollIntoView({block:"center"});
 }
 
 /* ---------- Actividades: cada una pinta en el contenedor y llama fin(sinFallos) ---------- */
@@ -1008,13 +1115,13 @@ const ACT={
 /* ---------- Reto diario ---------- */
 function vReto(R){
   setNav(null);
-  const SECR=R.tipo==="secreto", MAIN=RETOS.filter(r=>r.tipo!=="secreto"), w=R.mundo, num=MAIN.indexOf(R)+1;
+  const SECR=R.tipo==="secreto", MAIN=SECR?[]:retosTema(R.tema), w=R.mundo, num=MAIN.indexOf(R)+1;
   let p=0, gan=0, practico=false;
   const paso=()=>{
     if(p>=R.pasos.length) return final();
     V.innerHTML=`<div style="display:flex;gap:12px;align-items:center"><button class="btn sec" id="x" aria-label="Volver al mapa">✕</button>
        <div class="barra" style="flex:1"><span style="width:${p/R.pasos.length*100}%"></span></div></div>
-       <div><div class="eyebrow">${SECR?"Nivel secreto":`Día ${num} · ${MUNDOS[w].n}`}</div><h2>${esc(R.titulo)}</h2></div>
+       <div><div class="eyebrow">${SECR?"Nivel secreto":`${esc(TEMAS[R.tema].corto)} · ${NIVELES[w]} · Reto ${num}`}</div><h2>${esc(R.titulo)}</h2></div>
        <div id="act" style="display:flex;flex-direction:column;gap:18px"></div>`;
     $("#x").onclick=vMapa;
     const st=R.pasos[p], fn=ACT[st.k];
@@ -1024,23 +1131,25 @@ function vReto(R){
   };
   const final=async()=>{
     cargando("Guardando tu avance…");
-    const antes=P.siguiente_reto, saldo=P.mandarinas;
-    try{P=await rpc("completar_reto",{p_reto:R.orden,p_puntos:gan,p_practico:practico})}catch(e){return fallo(e)}
-    const ganado=P.mandarinas-saldo, subio=SECR?ganado>0:P.siguiente_reto>antes, bono=Math.max(0,ganado-Math.min(gan,60));
+    const saldo=P.mandarinas, antes=!SECR&&!hechoR(R);
+    try{P=await rpc("completar_reto",{p_reto:R.orden,p_puntos:gan,p_practico:practico});await cargarTodo()}catch(e){return fallo(e)}
+    const ganado=P.mandarinas-saldo, subio=SECR?ganado>0:antes&&hechoR(R), bono=Math.max(0,ganado-Math.min(gan,60));
     if(SECR&&subio)SEC_HECHOS.add(R.orden);
     stats();
-    const finMundo=!SECR&&subio&&!MAIN.some(r=>r.mundo===w&&r.orden>R.orden), sigM=MUNDOS[w+1];
+    const finSub=!SECR&&subio&&!MAIN.some(r=>r.mundo===w&&clave(r)>clave(R)), finTema=!SECR&&subio&&!sigDe(R.tema);
+    const otros=TEMA_IDS.filter(t=>t!==R.tema&&sigDe(t)&&!hoyListo(t));
     if(subio)lluvia(ganado>=40?36:20);if(subio&&!SECR)AVANZO=true;
     V.innerHTML=`${hero("guia",subio?"salta":"")}
-      <div><div class="eyebrow">${!subio?"Repaso terminado":SECR?"Nivel secreto completado":"Reto del día completado"}</div><h1>${finMundo?"Mundo superado":"Reto completado"}</h1></div>
-      ${subio?`<div class="premio"><div><b>+${ganado}</b>mandarinas</div>${SECR?`<div><b>${P.mandarinas}</b>en tu saldo</div>`:`<div><b>${P.racha}</b>${P.racha===1?"día de racha":"días de racha"}</div>`}</div>`
+      <div><div class="eyebrow">${!subio?"Repaso terminado":SECR?"Nivel secreto completado":`${esc(TEMAS[R.tema].corto)} · reto del día completado`}</div><h1>${finTema?"Tema completado":finSub?"Submundo superado":"Reto completado"}</h1></div>
+      ${subio?`<div class="premio"><div><b>+${ganado}</b>mandarinas</div><div><b>${P.racha}</b>${P.racha===1?"día de racha":"días de racha"}</div></div>`
              :`<p class="muted">Los repasos no suman mandarinas, pero refuerzan lo aprendido.</p>`}
-      ${dino(bono?`Incluye <b>+${bono}</b> de bono${finMundo?" por terminar el mundo":""}${P.racha%7===0&&!SECR?" por tu racha de "+P.racha+" días":""}. ${finMundo&&sigM&&MAIN.some(r=>r.mundo===w+1)?`Mañana se abre el ${sigM.n}.`:""}`
-            :finMundo&&sigM&&MAIN.some(r=>r.mundo===w+1)?`Terminaste el ${MUNDOS[w].n}. Mañana se abre el ${sigM.n}.`
-            :SECR&&subio?"Nivel secreto completado. Tus mandarinas ya están en el saldo."
-            :subio?"Eso era todo por hoy. Vuelve mañana para no perder la racha.":"Bien repasado.")}
-      <button class="btn" id="s">Volver al mapa</button>`;
-    $("#s").onclick=()=>ANON&&subio&&!SECR?vGuardar(vMapa):vMapa();window.scrollTo(0,0);
+      ${dino((bono?`Incluye <b>+${bono}</b> de bono${finSub?" por terminar el submundo":""}${P.racha%7===0&&bono>=15&&!SECR?" por tu racha de "+P.racha+" días":""}. `:"")+
+        (finTema?`Terminaste todo ${esc(TEMAS[R.tema].n)}. `:finSub?`Mañana se abre ${NIVELES[w+1]||"lo siguiente"}. `:"")+
+        (!subio?"Bien repasado.":otros.length?`¿Seguimos? Hoy todavía puedes hacer el reto de <b>${esc(TEMAS[otros[0]].n)}</b>.`:"Hiciste todo lo de hoy. Vuelve mañana para no perder la racha."))}
+      ${subio&&otros.length?`<button class="btn" id="otro">Ir a ${esc(TEMAS[otros[0]].corto)}</button><button class="btn sec" id="s">Volver al mapa</button>`:`<button class="btn" id="s">Volver al mapa</button>`}`;
+    $("#s").onclick=()=>ANON&&subio&&!SECR?vGuardar(vMapa):vMapa();
+    if($("#otro"))$("#otro").onclick=()=>{TEMA_MAPA=otros[0];AVANZO=false;ANON?vGuardar(vMapa):vMapa()};
+    window.scrollTo(0,0);
   };
   paso();
 }
@@ -1048,11 +1157,12 @@ function vReto(R){
 /* ---------- Arranque ---------- */
 async function inicio(){
   cargando();
+  TEMA_MAPA=null;
   try{
     const {data:{session}}=await sb.auth.getSession();
     if(!session){P=null;return vEntrada()}
     await cargarTodo();
-    P.nivel_inicial==null?vTest():vMapa();
+    P.nivel_inicial==null?vOnboarding():vMapa();
   }catch(e){fallo(e)}
 }
 (function(){
