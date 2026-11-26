@@ -69,7 +69,7 @@ input[type=email]{width:100%;background:var(--bg);border:2px solid var(--line);b
 .mundo-head{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;color:#fff}
 .mundo-head span{font-size:.85rem;font-weight:600;background:rgba(0,0,0,.28);padding:3px 10px;border-radius:99px;white-space:nowrap}
 .ruta{position:relative;height:390px}
-.ruta svg{position:absolute;inset:0;width:100%;height:100%}
+.ruta>svg{position:absolute;inset:0;width:100%;height:100%}
 .nodo{position:absolute;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;border:0;display:grid;place-items:center;
   font-family:var(--display);font-weight:800;font-size:1.5rem;background:var(--panel-2);color:var(--muted);box-shadow:0 6px 0 rgba(0,0,0,.35)}
 .nodo.hecho{background:var(--c);color:#fff}
@@ -151,6 +151,53 @@ footer{margin-top:24px;color:var(--muted);font-size:.8rem;text-align:center}
 .opt.tachada{opacity:.35;text-decoration:line-through}
 .secretos .linea-sec{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg);border-radius:16px;padding:12px}
 .secretos .linea-sec .btn{font-size:.95rem;padding:9px 12px}
+
+/* --- v1.3: mapa con paisaje, cofres, hoja, barra inferior --- */
+body.connav .app{padding-bottom:96px}
+#nav{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
+#nav[hidden],#hoja[hidden]{display:none}
+#nav div{display:flex;width:100%;max-width:460px}
+#nav button{flex:1;background:none;border:0;padding:10px 4px 9px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.74rem;font-weight:600;color:var(--muted)}
+#nav svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#nav button[aria-current="page"]{color:var(--naranja)}
+#nav button[aria-current="page"] svg{fill:rgba(252,94,49,.18)}
+#hoja{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(74px + env(safe-area-inset-bottom));width:min(428px,calc(100vw - 24px));z-index:14;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 18px 40px rgba(0,0,0,.55);padding:16px;display:flex;flex-direction:column;gap:10px;animation:sube .2s ease-out}
+@keyframes sube{from{transform:translate(-50%,16px);opacity:0}}
+#hoja .x{position:absolute;top:8px;right:8px;background:none;border:0;color:var(--muted);font-size:1.1rem;padding:6px 10px}
+#hoja h3{padding-right:34px}
+.ruta{overflow:hidden}
+.globo[hidden]{display:none}
+.item .fila b:first-child{white-space:normal}
+.chip{position:absolute;transform:translateX(-50%);width:140px;text-align:center;background:rgba(30,30,32,.82);color:#fff;border-radius:12px;padding:5px 8px;font-size:.78rem;line-height:1.2;pointer-events:none}
+.chip b{display:block;font-family:var(--display);font-size:.98rem;text-transform:uppercase}
+.chip small{color:#d8d2cc}
+.nodo{z-index:2;border:4px solid rgba(255,255,255,.85)}
+.nodo.cerrado{background:#6d6d72;color:#d5d5d8}
+.cofre-btn{position:absolute;transform:translate(-50%,-50%);z-index:2;background:none;border:0;padding:0;width:74px;height:66px}
+.cofre-btn svg{width:74px;height:66px;filter:drop-shadow(0 6px 0 rgba(0,0,0,.3))}
+.cofre-btn.listo{animation:brinca 1.1s ease-in-out infinite}
+.cofre-btn.cerrado svg{filter:grayscale(1) brightness(.8) drop-shadow(0 6px 0 rgba(0,0,0,.3))}
+.cofre-btn.abierto svg{opacity:.75}
+@keyframes brinca{50%{transform:translate(-50%,-58%) rotate(-3deg)}}
+.arbol,.decor{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:0;z-index:1}
+.arbol.mueve{animation:mece .5s}
+@keyframes mece{25%{transform:translate(-50%,-50%) rotate(-7deg)}75%{transform:translate(-50%,-50%) rotate(7deg)}}
+.dino-mapa{position:absolute;transform:translate(-50%,-50%);z-index:3;background:none;border:0;padding:0}
+.dino-mapa img{height:104px;width:auto;filter:drop-shadow(0 8px 6px rgba(0,0,0,.4));animation:flota 3.2s ease-in-out infinite}
+.dino-mapa.duerme img{filter:brightness(.7) drop-shadow(0 8px 6px rgba(0,0,0,.4));animation:none}
+.dino-mapa .zzz{position:absolute;top:-6px;right:-4px;color:#fff;font-family:var(--display);font-weight:800;animation:zz 2s ease-in-out infinite}
+@keyframes zz{50%{transform:translate(6px,-8px);opacity:.4}}
+.globo{position:absolute;z-index:4;width:170px;background:var(--ink);color:#231f1c;border-radius:16px;padding:9px 11px;font-size:.84rem;font-weight:500;line-height:1.3;box-shadow:0 6px 14px rgba(0,0,0,.35);transform:translateY(-100%)}
+.globo b{color:#c43d12}
+.lucier{position:absolute;width:5px;height:5px;border-radius:50%;background:#f6f39a;box-shadow:0 0 8px 3px rgba(246,243,154,.7);animation:parpa 2.4s ease-in-out infinite;z-index:1;pointer-events:none}
+@keyframes parpa{50%{opacity:.1;transform:translate(8px,-10px)}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2 div{background:var(--bg);border-radius:16px;padding:12px;text-align:center;font-size:.85rem}
+.grid2 b{display:block;font-family:var(--display);font-size:1.8rem;color:var(--naranja);font-variant-numeric:tabular-nums}
+.guia h3{margin-top:8px;color:var(--naranja)}
+.guia ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.seg{display:flex;gap:8px}.seg .btn{flex:1;font-size:.9rem;padding:9px 6px}
+.seg .btn[aria-pressed="true"]{border-color:var(--naranja);color:var(--naranja)}
 </style>
 </head>
 <body>
@@ -162,8 +209,15 @@ footer{margin-top:24px;color:var(--muted);font-size:.8rem;text-align:center}
     <div id="menu" class="menu" hidden></div>
   </header>
   <main id="v"></main>
-  <footer>MVP v1.2.3 · 25/11/2026 · MandarinaTec</footer>
+  <footer>MVP v1.3.0 · 26/11/2026 · MandarinaTec</footer>
 </div>
+<div id="hoja" hidden role="dialog" aria-label="Detalle"></div>
+<nav id="nav" hidden aria-label="Secciones"><div>
+  <button data-n="mapa"><svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>Mapa</button>
+  <button data-n="tienda"><svg viewBox="0 0 24 24"><path d="M6 8h12l1 12H5L6 8zM9 8V6a3 3 0 0 1 6 0v2"/></svg>Tienda</button>
+  <button data-n="guias"><svg viewBox="0 0 24 24"><path d="M5 4h9a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4zM5 17a3 3 0 0 1 3-3h9"/></svg>Mis guías</button>
+  <button data-n="perfil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Perfil</button>
+</div></nav>
 
 <script>
 /* =====================================================================
@@ -186,6 +240,9 @@ const ERRORES={
  solo_testers:"Esa opción es solo para el equipo de pruebas.",
  saldo_insuficiente:"Te faltan mandarinas para eso. Haz el reto de hoy y vuelve.",
  ya_desbloqueado:"Ese nivel ya lo tienes abierto.",
+ guia_ya_obtenida:"Esa guía ya es tuya. Está en Mis guías.",
+ cofre_bloqueado:"Todavía no llegas a ese cofre.",
+ cofre_ya_abierto:"Ese cofre ya lo abriste.",
  maximo_protectores:"Ya tienes 2 protectores, el máximo que se puede guardar."
 };
 const $=s=>document.querySelector(s), V=$("#v");
@@ -232,53 +289,118 @@ function fallo(e){
 const rachaViva=()=>{if(!P.ultimo_dia)return P.racha;const g=dias(HOY,P.ultimo_dia);return g<=1||(g===2&&P.protectores>0)?P.racha:0};
 function stats(){
   const S=$("#stats");
-  if(!(P&&P.nivel_inicial!=null)){S.innerHTML="";cierraMenu();return}
+  if(!(P&&P.nivel_inicial!=null)){S.innerHTML="";return}
   S.innerHTML=`<div class="pill" title="Días seguidos"><i style="background:var(--amarillo)"></i>Racha ${rachaViva()}</div>
-    <button class="saldo" id="saldo" aria-haspopup="true" aria-expanded="${!$("#menu").hidden}" aria-controls="menu" title="Mis mandarinas y recompensas">${MONEDA}${P.mandarinas}</button>`;
-  $("#saldo").onclick=ev=>{ev.stopPropagation();$("#menu").hidden?abreMenu():cierraMenu()};
-  if(!$("#menu").hidden)pintaMenu();
+    <button class="saldo" id="saldo" title="Ir a la tienda">${MONEDA}${P.mandarinas}</button>`;
+  $("#saldo").onclick=()=>vTienda();
 }
-let RECOMP=[], DESB=new Set(), SEC_HECHOS=new Set();
+let RECOMP=[], DESB=new Set(), SEC_HECHOS=new Set(), GUIAS=[], MIAS=new Set(), COFRES=[], ABIERTOS=new Set();
 const costo=c=>(RECOMP.find(r=>r.codigo===c)||{}).costo||0;
-function cierraMenu(){const M=$("#menu");M.hidden=true;const b=$("#saldo");if(b)b.setAttribute("aria-expanded","false")}
-function abreMenu(){$("#menu").hidden=false;$("#saldo").setAttribute("aria-expanded","true");pintaMenu();cargaHistorial()}
-document.addEventListener("click",e=>{const M=$("#menu");if(!M.hidden&&!M.contains(e.target))cierraMenu()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#menu").hidden){cierraMenu();$("#saldo").focus()}});
-const NOMBRE_CANJE={pista:"Pista",segunda:"Segunda oportunidad",nivel_secreto:"Nivel secreto",protector:"Protector de racha"};
-let HIST=null;
-async function cargaHistorial(){
-  const {data}=await sb.from("canjes").select("codigo,costo,creado").order("creado",{ascending:false}).limit(8);
-  HIST=data||[];if(!$("#menu").hidden)pintaMenu();
-}
-function pintaMenu(){
-  const M=$("#menu"), sec=RETOS.filter(r=>r.tipo==="secreto"&&!DESB.has(r.orden));
-  M.innerHTML=`
-   <div class="fila"><div><h4>Tus mandarinas</h4><div class="big">${P.mandarinas}</div></div>${hero("guia").replace("dino-hero","dino-hero mini")}</div>
-   <p class="muted">Mandarinas peladas en total: <b>${P.total_ganado}</b>${P.protectores?` · Protectores guardados: <b>${P.protectores}</b>`:""}</p>
-   <div><h4>Cómo ganar</h4>
-     <div class="fila"><span>Cada actividad sin errores</span><b>+10</b></div>
-     <div class="fila"><span>Reto práctico hecho</span><b>+20</b></div>
-     <div class="fila"><span>Terminar un mundo</span><b>+20</b></div>
-     <div class="fila"><span>Cada 7 días de racha</span><b>+15</b></div></div>
-   <div><h4>Tienda</h4></div>
-   ${RECOMP.map(r=>`<div class="item"><div class="fila"><b>${esc(r.nombre)}</b><b>${MONEDA.replace('class="moneda"','class="moneda" style="width:16px;height:16px;vertical-align:-3px"')} ${r.costo}</b></div>
-       <span class="muted">${esc(r.descripcion)}</span>
-       ${r.codigo==="protector"?`<button class="btn sec" data-c="protector" ${P.mandarinas<r.costo||P.protectores>=2?"disabled":""}>Canjear</button>`
-        :r.codigo==="nivel_secreto"?(sec.length?sec.map(x=>`<button class="btn sec" data-c="nivel_secreto" data-r="${x.orden}" ${P.mandarinas<r.costo?"disabled":""}>Abrir «${esc(x.titulo)}»</button>`).join(""):`<span class="muted">Ya abriste todos los niveles secretos.</span>`)
-        :""}</div>`).join("")}
-   <div id="msgMenu" class="err" role="status"></div>
-   <div><h4>Historial</h4>${HIST===null?'<p class="muted">Cargando…</p>':HIST.length?HIST.map(h=>`<div class="fila"><span>${NOMBRE_CANJE[h.codigo]||h.codigo} · ${new Date(h.creado).toLocaleDateString("es")}</span><b>−${h.costo}</b></div>`).join(""):'<p class="muted">Todavía no canjeas nada.</p>'}</div>`;
-  M.querySelectorAll("button[data-c]").forEach(b=>b.onclick=async ev=>{
-    ev.stopPropagation();b.disabled=true;
-    try{await canjea(b.dataset.c,b.dataset.r?+b.dataset.r:null);$("#msgMenu").textContent="Listo, canjeado.";lluvia(12);
-        if(b.dataset.c==="nivel_secreto"&&V.querySelector(".secretos"))vMapa();cargaHistorial()}
-    catch(e){const k=(e.message||"").match(/[a-z_]+/g)||[];$("#msgMenu").textContent=ERRORES[k.find(x=>ERRORES[x])]||"No se pudo canjear. Prueba de nuevo.";b.disabled=false}
-  });
-}
+const cierraMenu=()=>{};
+const errTxt=(e,def)=>{const k=(e&&e.message||"").match(/[a-z_]+/g)||[];return ERRORES[k.find(x=>ERRORES[x])]||def};
+const NOMBRE_CANJE={pista:"Pista",segunda:"Segunda oportunidad",nivel_secreto:"Nivel secreto",protector:"Protector de racha",guia:"Guía"};
 async function canjea(codigo,reto){
   P=await rpc("canjear",{p_codigo:codigo,p_reto:reto});
   if(codigo==="nivel_secreto")DESB.add(reto);
   stats();return P;
+}
+function setNav(a){
+  const N=$("#nav");N.hidden=!a;document.body.classList.toggle("connav",!!a);
+  N.querySelectorAll("button").forEach(b=>a&&b.dataset.n===a?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current"));
+  if(!a)cierraHoja();
+}
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>({mapa:vMapa,tienda:vTienda,guias:vGuias,perfil:vPerfil})[b.dataset.n]());
+function hoja(html){const h=$("#hoja");h.innerHTML=`<button class="x" aria-label="Cerrar">✕</button>`+html;h.hidden=false;h.querySelector(".x").onclick=cierraHoja;return h}
+function cierraHoja(){$("#hoja").hidden=true}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")cierraHoja()});
+const MON_CH=MONEDA.replace('class="moneda"','class="moneda" style="width:16px;height:16px;vertical-align:-3px"');
+
+/* ---------- Tienda ---------- */
+function vTienda(){
+  setNav("tienda");stats();
+  const sec=RETOS.filter(r=>r.tipo==="secreto"&&!DESB.has(r.orden));
+  V.innerHTML=`
+   <div class="fila"><div><div class="eyebrow">Tienda</div><h4 style="margin:0">Tus mandarinas</h4><div class="big" style="font-family:var(--display);font-weight:800;font-size:2.6rem;line-height:1">${P.mandarinas}</div>
+     <p class="muted">Peladas en total: <b>${P.total_ganado}</b>${P.protectores?` · Protectores: <b>${P.protectores}</b>`:""}</p></div>${hero("guia").replace("dino-hero","dino-hero mini")}</div>
+   <div id="msgT" class="err" role="status"></div>
+   ${GUIAS.length?`<section class="card"><div class="eyebrow">Guías de MandarinaTec</div>
+     ${GUIAS.map(g=>`<div class="item"><div class="fila"><b>${esc(g.titulo)}</b><b>${MON_CH} ${g.costo}</b></div><span class="muted">${esc(g.resumen)}</span>
+       ${MIAS.has(g.codigo)?`<button class="btn sec" data-lee="${g.codigo}">Ya es tuya · Leer</button>`
+         :`<button class="btn sec" data-g="${g.codigo}" ${P.mandarinas<g.costo?"disabled":""}>Canjear</button>${COFRES.some(c=>c.guia_codigo===g.codigo)?`<span class="muted">También sale gratis en un cofre del mapa.</span>`:""}`}</div>`).join("")}</section>`:""}
+   <section class="card"><div class="eyebrow">Recompensas</div>
+     ${RECOMP.map(r=>`<div class="item"><div class="fila"><b>${esc(r.nombre)}</b><b>${MON_CH} ${r.costo}</b></div><span class="muted">${esc(r.descripcion)}</span>
+       ${r.codigo==="protector"?`<button class="btn sec" data-c="protector" ${P.mandarinas<r.costo||P.protectores>=2?"disabled":""}>Canjear</button>`
+        :r.codigo==="nivel_secreto"?(sec.length?sec.map(x=>`<button class="btn sec" data-c="nivel_secreto" data-r="${x.orden}" ${P.mandarinas<r.costo?"disabled":""}>Abrir «${esc(x.titulo)}»</button>`).join(""):`<span class="muted">Ya abriste todos los niveles secretos.</span>`)
+        :""}</div>`).join("")}</section>
+   <section class="card"><div class="eyebrow">Cómo ganar mandarinas</div>
+     <div class="fila"><span>Cada actividad sin errores</span><b>+10</b></div>
+     <div class="fila"><span>Reto práctico hecho</span><b>+20</b></div>
+     <div class="fila"><span>Terminar un mundo</span><b>+20</b></div>
+     <div class="fila"><span>Cada 7 días de racha</span><b>+15</b></div>
+     <div class="fila"><span>Cofres del mapa</span><b>+15 o una guía</b></div></section>
+   <section class="card"><div class="eyebrow">Historial de canjes</div><div id="hist"><p class="muted">Cargando…</p></div></section>`;
+  const fin=(ok)=>{lluvia(14);vTienda();$("#msgT").textContent=ok};
+  V.querySelectorAll("[data-c]").forEach(b=>b.onclick=async()=>{b.disabled=true;
+    try{await canjea(b.dataset.c,b.dataset.r?+b.dataset.r:null);fin(b.dataset.r?"Nivel secreto abierto. Juégalo desde el mapa.":"Listo, canjeado.")}
+    catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
+  V.querySelectorAll("[data-g]").forEach(b=>b.onclick=async()=>{b.disabled=true;
+    try{P=await rpc("canjear_guia",{p_codigo:b.dataset.g});MIAS.add(b.dataset.g);fin("Guía canjeada. Ya está en Mis guías.")}
+    catch(e){$("#msgT").textContent=errTxt(e,"No se pudo canjear. Prueba de nuevo.");b.disabled=false}});
+  V.querySelectorAll("[data-lee]").forEach(b=>b.onclick=()=>vGuia(b.dataset.lee));
+  sb.from("canjes").select("codigo,costo,creado").order("creado",{ascending:false}).limit(8).then(({data})=>{
+    const H=$("#hist");if(!H)return;
+    H.innerHTML=data&&data.length?data.map(h=>`<div class="fila"><span>${NOMBRE_CANJE[h.codigo]||h.codigo} · ${new Date(h.creado).toLocaleDateString("es")}</span><b>−${h.costo}</b></div>`).join(""):'<p class="muted">Todavía no canjeas nada.</p>'});
+  window.scrollTo(0,0);
+}
+
+/* ---------- Mis guías ---------- */
+function vGuias(){
+  setNav("guias");stats();
+  const MAIN=RETOS.filter(r=>r.tipo!=="secreto");
+  V.innerHTML=`<div><div class="eyebrow">Mis guías</div><h2>Tu biblioteca de trucos</h2></div>
+   ${GUIAS.length?"":dino("Las guías todavía no están cargadas. Vuelve pronto.")}
+   ${GUIAS.map(g=>{const c=COFRES.find(x=>x.guia_codigo===g.codigo),r=c&&MAIN.find(x=>x.orden===c.despues_de);
+     return `<div class="card" ${MIAS.has(g.codigo)?"":'style="opacity:.75"'}><h3>${esc(g.titulo)}</h3><p class="muted">${esc(g.resumen)}</p>
+     ${MIAS.has(g.codigo)?`<button class="btn" data-lee="${g.codigo}">Leer</button>`
+       :`<p><b>Bloqueada.</b> ${r?`Sale en el cofre después de «${esc(r.titulo)}», o canjéala`:"Canjéala"} por ${g.costo} mandarinas.</p><button class="btn sec" data-ir>Ir a la tienda</button>`}</div>`}).join("")}`;
+  V.querySelectorAll("[data-lee]").forEach(b=>b.onclick=()=>vGuia(b.dataset.lee));
+  V.querySelectorAll("[data-ir]").forEach(b=>b.onclick=vTienda);
+  window.scrollTo(0,0);
+}
+async function vGuia(codigo){
+  setNav("guias");
+  const g=GUIAS.find(x=>x.codigo===codigo);cargando("Abriendo tu guía…");
+  const {data,error}=await sb.from("guias_contenido").select("secciones").eq("codigo",codigo).single();
+  if(error||!data){V.innerHTML=dino("No pude abrir esa guía. Revisa tu internet y vuelve a intentar.","dino-alto.webp")+`<button class="btn" id="s">Volver</button>`;$("#s").onclick=vGuias;return}
+  V.innerHTML=`<button class="btn sec" id="s" style="align-self:flex-start">← Mis guías</button>
+   <div><div class="eyebrow">Guía de MandarinaTec</div><h2>${esc(g?g.titulo:"")}</h2></div>
+   <article class="card guia">${data.secciones.map(x=>`<h3>${esc(x.h)}</h3><ul>${x.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`).join("")}</article>
+   ${dino("Guárdala en la cabeza o vuelve cuando quieras: aquí se queda.")}`;
+  $("#s").onclick=vGuias;window.scrollTo(0,0);
+}
+
+/* ---------- Perfil ---------- */
+function vPerfil(){
+  setNav("perfil");stats();
+  const MAIN=RETOS.filter(r=>r.tipo!=="secreto"), hechos=MAIN.filter(r=>r.orden<P.siguiente_reto&&r.mundo>=P.nivel_inicial).length;
+  V.innerHTML=`<div class="dino-row"><img class="cara" src="dino-cara.webp" alt=""><div><div class="eyebrow">Perfil</div><h2>${ANON?"Invitado":esc(P.usuario||"Tu cuenta")}</h2><p class="muted">${ANON?"Sin cuenta guardada":esc(P.email)}</p></div></div>
+   <div class="grid2"><div><b>${rachaViva()}</b>días de racha</div><div><b>${P.mandarinas}</b>mandarinas</div>
+     <div><b>${hechos}</b>retos completados</div><div><b>${MIAS.size}</b>guías</div></div>
+   ${ANON?`<div class="card" style="border-color:var(--amarillo)"><p><b>Estás jugando como invitado.</b> Si borras el navegador o cambias de teléfono, pierdes tu racha.</p>
+      <div class="ayuda"><button class="btn" id="guardar">Guardar mi avance</button><button class="btn sec" id="yaCuenta">Ya tengo cuenta</button></div></div>`:""}
+   <div class="card"><div class="eyebrow">El cielo del mapa</div><div class="seg">
+     ${[["","Automático"],["dia","Día"],["noche","Noche"]].map(m=>`<button class="btn sec" data-m="${m[0]}" aria-pressed="${(MODO||"")===m[0]}">${m[1]}</button>`).join("")}</div>
+     <p class="muted">En automático se hace de noche a las 6 de la tarde, según tu hora.</p></div>
+   ${ANON?"":`<button class="btn sec" id="salir">Cerrar sesión</button>`}
+   ${P.es_tester?`<div class="demo"><p class="muted"><b>Controles de prueba.</b> Solo los ve el equipo (es_tester en Supabase).</p><div>
+     <button class="btn sec" data-t="saltar_dia">Saltar al día siguiente</button><button class="btn sec" data-t="reiniciar">Reiniciar mi progreso</button><button class="btn sec" data-t="mandarinas">+200 mandarinas</button></div></div>`:""}`;
+  if(ANON){$("#guardar").onclick=()=>vGuardar(vPerfil);$("#yaCuenta").onclick=()=>vLogin(vPerfil)}
+  else $("#salir").onclick=async()=>{await sb.auth.signOut();P=null;ANON=false;setNav(null);vEntrada()};
+  V.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{MODO=b.dataset.m||null;try{MODO?localStorage.setItem("mt_modo",MODO):localStorage.removeItem("mt_modo")}catch(e){}vPerfil()});
+  V.querySelectorAll("[data-t]").forEach(b=>b.onclick=async()=>{cargando();
+    try{await rpc("tester_accion",{p_accion:b.dataset.t});await cargarTodo()}catch(e){return fallo(e)}
+    P.nivel_inicial==null?vTest():b.dataset.t==="saltar_dia"?vMapa():vPerfil()});
+  window.scrollTo(0,0);
 }
 async function rpc(fn,args){const {data,error}=await sb.rpc(fn,args);if(error)throw error;return Array.isArray(data)?data[0]:data}
 async function cargarTodo(){
@@ -293,12 +415,18 @@ async function cargarTodo(){
   for(const x of [p,r,h,rc,ds,it]) if(x.error)throw x.error;
   P=p.data; RETOS=r.data; HOY=h.data; RECOMP=rc.data; DESB=new Set(ds.data.map(x=>x.reto_orden)); SEC_HECHOS=new Set(it.data.map(x=>x.reto_orden));
   if(P.usuario==='usuario')P.usuario=u.email?u.email.split('@')[0]:'';
+  // Tablas de la v1.3: si el parche aún no está aplicado, la app sigue funcionando sin guías ni cofres
+  const opc=async q=>{try{const x=await q;return x.error?[]:x.data||[]}catch(e){return []}};
+  const [g,mg,cf,ca]=await Promise.all([opc(sb.from("guias").select("*").order("orden")),opc(sb.from("guias_usuario").select("codigo")),
+    opc(sb.from("cofres").select("*").order("id")),opc(sb.from("cofres_abiertos").select("cofre_id"))]);
+  GUIAS=g; MIAS=new Set(mg.map(x=>x.codigo)); COFRES=cf; ABIERTOS=new Set(ca.map(x=>x.cofre_id));
 }
 
 /* ---------- Entrada: jugar sin registro ---------- */
 let ANON=false;                    // true mientras el usuario juega como invitado
 const campo='width:100%;background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:13px 14px;color:var(--ink);font:inherit';
 function vEntrada(msg){
+  setNav(null);
   stats();
   V.innerHTML=`
    ${hero("guia")}
@@ -318,6 +446,7 @@ function vEntrada(msg){
   $("#ya").onclick=()=>vLogin();
 }
 function vLogin(volver,correo){
+  setNav(null);
   const conAvance=ANON&&P&&(P.nivel_inicial!=null||P.mandarinas>0);
   V.innerHTML=`
    ${dino("¡Qué bueno verte de vuelta! Escribe tu correo y tu contraseña.")}
@@ -342,6 +471,7 @@ function vLogin(volver,correo){
 }
 /* ---------- Guardar el avance del invitado (correo + contraseña) ---------- */
 function vGuardar(despues){
+  setNav(null);
   V.innerHTML=`
    ${hero("reto")}
    ${dino(`Tu avance vive solo en este navegador. Guárdalo y no pierdes tu racha aunque cambies de teléfono.`)}
@@ -383,6 +513,7 @@ function vGuardar(despues){
 
 /* ---------- Test de nivel ---------- */
 function vTest(){
+  setNav(null);
   let i=0,pts=0;
   const pinta=()=>{
     V.innerHTML=`
@@ -413,26 +544,66 @@ function vTest(){
 }
 
 /* ---------- Mapa ---------- */
+let AVANZO=false, MODO=null;                 // MODO: null automático | "dia" | "noche"
+try{MODO=localStorage.getItem("mt_modo")||null}catch(e){}
+const esNoche=()=>MODO?MODO==="noche":(h=>h<6||h>=18)(new Date().getHours());
+const PAL={dia:{cielo:["#7cc8ff","#d6f1ff"],prado:["#79c96a","#9fd06c","#8fc4a0"],camino:"#f4e3b5",raya:"#d9bf7e",copa:"#3f9a37",copa2:"#58b84b",tronco:"#8a5a33",muro:"#f6e7cf",techo:"#fc5e31",vent:"#7cc8ff",torre:"#c9d3e6"},
+           noche:{cielo:["#141a45","#2c3470"],prado:["#1f4d3c","#2b5540","#27495a"],camino:"#8f8a78",raya:"#6c6858",copa:"#1f5a2b",copa2:"#2a6d36",tronco:"#4d3524",muro:"#6b6480",techo:"#a8452a",vent:"#ffd966",torre:"#4a5378"}};
+const FRASES=["Un reto al día y en un mes le explicas tú al sabelotodo de la oficina.","Los cofres del camino dicen qué traen. Aquí nada es al azar.","¿Ya viste la tienda? Hay guías que se canjean con mandarinas.","Toca cualquier nivel para ver de qué trata.","Los árboles también se dejan tocar. No dan mandarinas, pero relajan."];
+const arbolSVG=p=>`<svg viewBox="0 0 60 78" width="60" height="78" aria-hidden="true"><rect x="26" y="46" width="8" height="30" rx="3" fill="${p.tronco}"/><circle cx="30" cy="30" r="27" fill="${p.copa}"/><circle cx="22" cy="22" r="14" fill="${p.copa2}"/><g fill="#fc8a31"><circle cx="16" cy="34" r="5"/><circle cx="38" cy="18" r="5"/><circle cx="43" cy="38" r="5"/><circle cx="27" cy="45" r="4.5"/></g></svg>`;
+const casaSVG=p=>`<svg viewBox="0 0 64 60" width="64" height="60" aria-hidden="true"><rect x="10" y="26" width="44" height="32" rx="3" fill="${p.muro}"/><path d="M4 30 32 6l28 24z" fill="${p.techo}"/><rect x="18" y="36" width="11" height="11" rx="2" fill="${p.vent}"/><rect x="37" y="38" width="10" height="20" rx="2" fill="${p.tronco}"/></svg>`;
+const torreSVG=p=>`<svg viewBox="0 0 64 84" width="64" height="84" aria-hidden="true"><rect x="6" y="24" width="24" height="58" rx="3" fill="${p.torre}"/><rect x="32" y="6" width="26" height="76" rx="3" fill="${p.muro}"/><g fill="${p.vent}">${[14,28,42,56,68].map(y=>`<rect x="38" y="${y}" width="6" height="7" rx="1"/><rect x="48" y="${y}" width="6" height="7" rx="1"/>`).join("")}${[32,46,60].map(y=>`<rect x="11" y="${y}" width="5" height="7" rx="1"/><rect x="20" y="${y}" width="5" height="7" rx="1"/>`).join("")}</g></svg>`;
+const cofreSVG=ab=>`<svg viewBox="0 0 74 66" aria-hidden="true"><rect x="8" y="30" width="58" height="30" rx="6" fill="#a8521e"/><rect x="8" y="30" width="58" height="9" fill="#8a3f14"/>
+  <g transform="${ab?"rotate(-28 10 30)":""}"><path d="M8 32v-8a14 14 0 0 1 14-14h30a14 14 0 0 1 14 14v8z" fill="#c9692a"/><rect x="31" y="10" width="12" height="22" fill="#e8c348"/></g>
+  <rect x="31" y="30" width="12" height="30" fill="#e8c348"/><circle cx="37" cy="42" r="5" fill="#8a3f14"/>${ab?'<g fill="#fc8a31"><circle cx="24" cy="26" r="6"/><circle cx="50" cy="25" r="6"/><circle cx="37" cy="22" r="6"/></g>':""}</svg>`;
+
 function vMapa(){
-  stats();
-  const MAIN=RETOS.filter(r=>r.tipo!=="secreto"), yaHoy=P.ultimo_dia===HOY, sig=MAIN.find(r=>r.orden===P.siguiente_reto), X=[26,70,34,72,30,68];
-  let html=dino(!sig?`Completaste todos los mundos${P.usuario?`, <b>${esc(P.usuario)}</b>`:""}. Ya eres de los que explican, no de los que preguntan.`
-     :yaHoy?`Listo por hoy. Cierra esto y vete a vivir. Mañana te espero con <b>${esc(sig.titulo)}</b>.`
-     :`Hoy toca <b>${esc(sig.titulo)}</b>. Toca el círculo naranja y te voy diciendo qué hacer.`);
+  setNav("mapa");stats();
+  const noche=esNoche(), p=noche?PAL.noche:PAL.dia;
+  const MAIN=RETOS.filter(r=>r.tipo!=="secreto"), yaHoy=P.ultimo_dia===HOY, sig=MAIN.find(r=>r.orden===P.siguiente_reto);
+  const X=[28,68,36,72,30,66], PASO=128, Y0=150, ultimo=MAIN[MAIN.length-1];
+  const dinoEn=sig||ultimo, num=r=>MAIN.indexOf(r)+1;
+  const msgHoy=!sig?`Completaste todos los mundos${P.usuario?`, <b>${esc(P.usuario)}</b>`:""}. Ya eres de los que explican.`
+     :yaHoy?`Listo por hoy. Mañana te espero con <b>${esc(sig.titulo)}</b>.`:`Hoy toca <b>${esc(sig.titulo)}</b>. Toca el círculo naranja.`;
+  let html=ANON?`<div class="card" style="border-color:var(--amarillo)"><p><b>Estás jugando como invitado.</b> Si borras el navegador o cambias de teléfono, pierdes tu racha.</p><div class="ayuda" style="margin-top:12px"><button class="btn" id="guardar">Guardar mi avance</button><button class="btn sec" id="yaCuenta">Ya tengo cuenta</button></div></div>`:"";
   MUNDOS.forEach((m,w)=>{
-    const lista=MAIN.filter(r=>r.mundo===w), n=lista.length; if(!n)return;
-    const H=150+120*(n-1), Y=k=>75+120*k, hechos=lista.filter(r=>r.orden<P.siguiente_reto&&w>=P.nivel_inicial).length;
+    const rs=MAIN.filter(r=>r.mundo===w); if(!rs.length)return;
+    const items=[]; rs.forEach(r=>{items.push({r});COFRES.filter(c=>c.despues_de===r.orden).forEach(c=>items.push({c}))});
+    const n=items.length, H=Y0+PASO*(n-1)+120, Y=k=>Y0+PASO*k, hechos=rs.filter(r=>r.orden<P.siguiente_reto&&w>=P.nivel_inicial).length;
     html+=`<section class="mundo"><div class="mundo-head" style="background:${m.c}"><div><h3>${m.n}</h3><small>${m.sub}</small></div>
-      <span>${w<P.nivel_inicial?"Convalidado":hechos+" de "+n}</span></div>
-      <div class="ruta" style="height:${H}px"><svg viewBox="0 0 100 ${H}" preserveAspectRatio="none" aria-hidden="true">
-        <polyline points="${lista.map((_,k)=>X[k%6]+","+Y(k)).join(" ")}" fill="none" stroke="#6b6b70" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
-    lista.forEach((r,k)=>{
-      const x=X[k%6], hecho=r.orden<P.siguiente_reto, actual=r.orden===P.siguiente_reto, num=MAIN.indexOf(r)+1;
-      const cls=hecho?"hecho":actual?(yaHoy?"espera":"hoy"):"";
-      const est=w<P.nivel_inicial?"Repaso libre":hecho?"Completado":actual?(yaHoy?"Se abre mañana":"Reto de hoy"):"Bloqueado";
-      html+=`<button class="nodo ${cls}" style="left:${x}%;top:${Y(k)}px;--c:${m.c}" data-o="${r.orden}" ${hecho||(actual&&!yaHoy)?"":"disabled"} aria-label="${esc(r.titulo)}: ${est}">
-        ${actual?'<img src="dino-cara.webp" alt="">':""}${hecho?"✓":num}</button>
-        <div class="rot" style="top:${Y(k)}px;${x<50?`left:calc(${x}% + 46px)`:`right:calc(${100-x}% + 46px);text-align:right`}"><b>${esc(r.titulo)}</b><small>${est}</small></div>`;
+      <span>${w<P.nivel_inicial?"Convalidado":hechos+" de "+rs.length}</span></div>
+      <div class="ruta" data-w="${w}" style="height:${H}px;background:${p.prado[w]}">
+      <svg viewBox="0 0 400 ${H}" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="cielo${w}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.cielo[0]}"/><stop offset="1" stop-color="${p.cielo[1]}"/></linearGradient></defs>
+        <rect width="400" height="84" fill="url(#cielo${w})"/>
+        ${noche?`<circle cx="338" cy="34" r="16" fill="#f4f1d0"/><circle cx="331" cy="29" r="14" fill="${p.cielo[0]}"/>${[[30,20],[80,44],[130,16],[190,36],[240,14],[285,50],[370,66],[60,64]].map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="1.6" fill="#fff"/>`).join("")}`
+               :`<circle cx="338" cy="34" r="18" fill="#ffd84a"/><g fill="#fff" opacity=".9"><ellipse cx="80" cy="30" rx="30" ry="11"/><ellipse cx="102" cy="24" rx="20" ry="10"/><ellipse cx="230" cy="46" rx="26" ry="9"/></g>`}
+        <path d="M0 84 Q50 54 100 74 T200 68 T300 76 T400 62 V100 H0Z" fill="${p.prado[w]}"/>
+        <polyline points="${items.map((_,k)=>X[k%6]*4+","+Y(k)).join(" ")}" fill="none" stroke="${p.camino}" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="${items.map((_,k)=>X[k%6]*4+","+Y(k)).join(" ")}" fill="none" stroke="${p.raya}" stroke-width="3" stroke-dasharray="2 14" stroke-linecap="round"/>
+        <g fill="${p.copa2}" opacity=".55">${items.map((_,k)=>`<circle cx="${(k*97+60)%380+10}" cy="${Y(k)+64}" r="4"/><circle cx="${(k*151+200)%380+10}" cy="${Y(k)-58}" r="3"/>`).join("")}</g>
+      </svg>`;
+    if(noche) for(let f=0;f<5;f++) html+=`<i class="lucier" style="left:${(f*37+12)%90+4}%;top:${110+(f*173)%(H-150)}px;animation-delay:${f*.5}s"></i>`;
+    items.forEach((it,k)=>{
+      const x=X[k%6], lado=x<50?85:13, ladoD=x<50?80:20, y=Y(k);
+      if(it.r){
+        const r=it.r, hecho=r.orden<P.siguiente_reto, actual=r.orden===P.siguiente_reto;
+        const cls=hecho?"hecho":actual?(yaHoy?"espera":"hoy"):"cerrado";
+        const est=w<P.nivel_inicial?"Repaso libre":hecho?"Completado":actual?(yaHoy?"Se abre mañana":"Reto de hoy"):"Bloqueado";
+        html+=`<button class="nodo ${cls}" style="left:${x}%;top:${y}px;--c:${m.c}" data-o="${r.orden}" aria-label="${esc(r.titulo)}: ${est}">${hecho?"✓":num(r)}</button>
+          <div class="chip" style="left:${x}%;top:${y+42}px"><b>${esc(r.titulo)}</b><small>${est}</small></div>`;
+      }else{
+        const c=it.c, ab=ABIERTOS.has(c.id), listo=!ab&&P.siguiente_reto>c.despues_de, g=GUIAS.find(q=>q.codigo===c.guia_codigo);
+        html+=`<button class="cofre-btn ${ab?"abierto":listo?"listo":"cerrado"}" style="left:${x}%;top:${y}px" data-cofre="${c.id}" aria-label="Cofre: ${ab?"abierto":listo?"listo para abrir":"cerrado"}">${cofreSVG(ab)}</button>
+          <div class="chip" style="left:${x}%;top:${y+40}px"><b>${g?"Cofre con guía":"Cofre"}</b><small>${ab?"Abierto":g?esc(g.titulo):"+"+c.mandarinas+" mandarinas"}</small></div>`;
+      }
+      if(it.r&&it.r===dinoEn){
+        const dormido=noche&&yaHoy;
+        html+=`<button class="dino-mapa ${dormido?"duerme":""}" id="dinoMapa" style="left:${ladoD}%;top:${y+30}px" data-k="${k}" aria-label="Dino">${dormido?'<span class="zzz">z z z</span>':""}<img src="dino-guia.webp" alt="Dino" ${lado>50?'style="transform:scaleX(-1)"':""}></button>
+          <div class="globo" id="globo" style="${lado>50?"right:4%":"left:4%"};top:${y-28}px">${dormido?"Zzz… ya hiciste lo de hoy. Yo también descanso.":msgHoy}</div>`;
+      }else html+=w===1&&k%2===0?`<div class="decor" style="left:${lado}%;top:${y+26}px">${casaSVG(p)}</div>`
+               :w===2&&k%2===0?`<div class="decor" style="left:${lado}%;top:${y+16}px">${torreSVG(p)}</div>`
+               :`<button class="arbol" style="left:${lado}%;top:${y+24}px" aria-label="Árbol de mandarinas">${arbolSVG(p)}</button>`;
     });
     html+=`</div></section>`;
   });
@@ -444,36 +615,50 @@ function vMapa(){
       ${ab?`<button class="btn sec" data-s="${r.orden}">${hecho?"Repasar":"Jugar"}</button>`
           :`<button class="btn sec" data-abre="${r.orden}" ${P.mandarinas<costo("nivel_secreto")?"disabled":""}>Abrir</button>`}</div>`}).join("")}
     <div class="err" id="msgSec" role="status"></div></section>`;
-  html=(ANON?`<div class="card" style="border-color:var(--amarillo)"><p><b>Estás jugando como invitado.</b> Si borras el navegador o cambias de teléfono, pierdes tu racha.</p><div class="ayuda" style="margin-top:12px"><button class="btn" id="guardar">Guardar mi avance</button><button class="btn sec" id="yaCuenta">Ya tengo cuenta</button></div></div>`:"")+html;
-  html+=ANON?"":`<button class="btn sec" id="salir">Cerrar sesión (${esc(P.email)})</button>`;
-  if(P.es_tester) html+=`<div class="demo"><p class="muted"><b>Controles de prueba.</b> Solo los ve el equipo (es_tester en Supabase).</p><div>
-     <button class="btn sec" id="dia">Saltar al día siguiente</button><button class="btn sec" id="reset">Reiniciar mi progreso</button><button class="btn sec" id="mas">+200 mandarinas</button></div></div>`;
   V.innerHTML=html;
-  V.querySelectorAll(".nodo:not([disabled])").forEach(b=>b.onclick=()=>vReto(RETOS.find(r=>r.orden===+b.dataset.o)));
-  V.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>vReto(RETOS.find(r=>r.orden===+b.dataset.s)));
-  V.querySelectorAll("[data-abre]").forEach(b=>b.onclick=async()=>{
-    b.disabled=true;
-    try{await canjea("nivel_secreto",+b.dataset.abre);lluvia(16);vMapa()}
-    catch(e){const k=(e.message||"").match(/[a-z_]+/g)||[];$("#msgSec").textContent=ERRORES[k.find(x=>ERRORES[x])]||"No se pudo abrir. Prueba de nuevo.";b.disabled=false}
-  });
+  V.onclick=e=>{if(!e.target.closest(".nodo,.cofre-btn"))cierraHoja()};
   if(ANON){$("#guardar").onclick=()=>vGuardar(vMapa);$("#yaCuenta").onclick=()=>vLogin(vMapa)}
-  else $("#salir").onclick=async()=>{await sb.auth.signOut();P=null;ANON=false;vEntrada()};
-  if(P.es_tester){
-    const t=async a=>{cargando();try{P=await rpc("tester_accion",{p_accion:a});HOY=(await sb.rpc("hoy_usuario")).data}catch(e){return fallo(e)}P.nivel_inicial==null?vTest():vMapa()};
-    $("#dia").onclick=()=>t("saltar_dia");$("#reset").onclick=()=>{DESB=new Set();SEC_HECHOS=new Set();t("reiniciar")};$("#mas").onclick=()=>t("mandarinas");
+
+  // Niveles: al tocar, se abre la hoja con el detalle
+  V.querySelectorAll(".nodo").forEach(b=>b.onclick=()=>{
+    const r=RETOS.find(q=>q.orden===+b.dataset.o), hecho=r.orden<P.siguiente_reto, actual=r.orden===P.siguiente_reto;
+    const h=hoja(`<div class="eyebrow">Día ${num(r)} · ${MUNDOS[r.mundo].n}</div><h3>${esc(r.titulo)}</h3>
+      <p class="muted">${r.pasos.length} actividades · unos 5 minutos · hasta 60 mandarinas</p>
+      ${hecho?`<button class="btn" id="ir">Repasar</button>`:actual&&!yaHoy?`<button class="btn" id="ir">Empezar</button>`
+        :actual?`<p>Ya hiciste el reto de hoy. Este se abre mañana.</p>`:`<p>Termina los retos anteriores para abrirlo. Uno por día.</p>`}`);
+    const ir=h.querySelector("#ir"); if(ir)ir.onclick=()=>vReto(r);
+  });
+  // Cofres
+  const hojaCofre=c=>{
+    const ab=ABIERTOS.has(c.id), listo=!ab&&P.siguiente_reto>c.despues_de, g=GUIAS.find(q=>q.codigo===c.guia_codigo), r=MAIN.find(q=>q.orden===c.despues_de);
+    const h=hoja(`<div class="eyebrow">Cofre de premio</div><h3>${g?"Guía: "+esc(g.titulo):"+"+c.mandarinas+" mandarinas"}</h3>
+      ${g?`<p class="muted">${esc(g.resumen)}</p>`:""}
+      ${ab?(g?`<button class="btn" id="lee">Leer la guía</button>`:`<p>Ya lo abriste. Las mandarinas están en tu saldo.</p>`)
+        :listo?`<button class="btn" id="abre">Abrir cofre</button>`:`<p>Completa «${esc(r?r.titulo:"el reto anterior")}» para abrirlo.</p>`}<div class="err" id="msgC" role="status"></div>`);
+    if(h.querySelector("#lee"))h.querySelector("#lee").onclick=()=>vGuia(g.codigo);
+    if(h.querySelector("#abre"))h.querySelector("#abre").onclick=async ev=>{ev.target.disabled=true;
+      try{P=await rpc("abrir_cofre",{p_cofre:c.id});ABIERTOS.add(c.id);if(g)MIAS.add(g.codigo);lluvia(26);vMapa();hojaCofre(c)}
+      catch(e){h.querySelector("#msgC").textContent=errTxt(e,"No se pudo abrir. Prueba de nuevo.");ev.target.disabled=false}};
+  };
+  V.querySelectorAll(".cofre-btn").forEach(b=>b.onclick=()=>hojaCofre(COFRES.find(c=>c.id===+b.dataset.cofre)));
+  // Dino y árboles
+  let nf=0, tg=0; const D=$("#dinoMapa"), ocultaGlobo=ms=>{clearTimeout(tg);tg=setTimeout(()=>{const G=$("#globo");if(G)G.hidden=true},ms)};
+  if(D)ocultaGlobo(7000);
+  if(D)D.onclick=()=>{const G=$("#globo");G.innerHTML=nf===0&&rachaViva()>1?`Llevas <b>${rachaViva()} días</b> seguidos. No la sueltes.`:FRASES[nf%FRASES.length];nf++;G.hidden=false;G.removeAttribute("data-ok");G.dataset.tw="";teclea(V);ocultaGlobo(5000)};
+  V.querySelectorAll(".arbol").forEach(b=>b.onclick=()=>{b.classList.remove("mueve");void b.offsetWidth;b.classList.add("mueve")});
+  // Secretos
+  V.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>vReto(RETOS.find(r=>r.orden===+b.dataset.s)));
+  V.querySelectorAll("[data-abre]").forEach(b=>b.onclick=async()=>{b.disabled=true;
+    try{await canjea("nivel_secreto",+b.dataset.abre);lluvia(16);vMapa()}
+    catch(e){$("#msgSec").textContent=errTxt(e,"No se pudo abrir. Prueba de nuevo.");b.disabled=false}});
+  // Dino camina desde el nivel anterior cuando avanzas
+  if(D&&AVANZO&&D.animate&&!QUIETO&&+D.dataset.k>0){
+    const W=D.parentElement.clientWidth, k=+D.dataset.k, lp=X[(k-1)%6]<50?80:20, la=X[k%6]<50?80:20;
+    D.animate([{transform:`translate(calc(-50% + ${(lp-la)/100*W}px),calc(-50% - ${PASO}px))`},{transform:"translate(-50%,-50%)"}],{duration:900,easing:"cubic-bezier(.3,1.3,.5,1)"});
   }
-  const nd=V.querySelector(".nodo.hoy,.nodo.espera"); if(nd&&nd.scrollIntoView) nd.scrollIntoView({block:"center"});
+  AVANZO=false;
+  const nd=D||V.querySelector(".nodo.hoy,.nodo.espera"); if(nd&&nd.scrollIntoView) nd.scrollIntoView({block:"center"});
 }
-
-// Test de nivel: cada opción vale 0, 1 o 2 puntos
-const TEST=[
- ["Te piden pasar un PDF a Word. ¿Qué haces?",["Le pido el favor a alguien","Busco un tutorial y lo logro","Lo hago sin pensarlo"]],
- ["¿Cómo te llevas con las hojas de cálculo?",["Las abro y me asusto","Sumo y ordeno, hasta ahí","Fórmulas y filtros a diario"]],
- ["¿Has usado un chat de IA?",["Nunca o casi nunca","A veces, para cosas simples","Sí, lo uso para trabajar"]],
- ["Si te digo «prompt», ¿qué piensas?",["Ni idea","Me suena: lo que le escribes a la IA","Tengo los míos guardados"]],
- ["¿Has automatizado algo? Una regla de correo, por ejemplo.",["No sabía que se podía","Lo intenté una vez","Sí, varias cosas"]]
-];
-
 
 /* ---------- Actividades: cada una pinta en el contenedor y llama fin(sinFallos) ---------- */
 const BIEN=["Exacto. Así se hace.","Esa es. Vas volando.","Correcto, sin despeinarte."];
@@ -612,6 +797,7 @@ const ACT={
 
 /* ---------- Reto diario ---------- */
 function vReto(R){
+  setNav(null);
   const SECR=R.tipo==="secreto", MAIN=RETOS.filter(r=>r.tipo!=="secreto"), w=R.mundo, num=MAIN.indexOf(R)+1;
   let p=0, gan=0, practico=false;
   const paso=()=>{
@@ -634,7 +820,7 @@ function vReto(R){
     if(SECR&&subio)SEC_HECHOS.add(R.orden);
     stats();
     const finMundo=!SECR&&subio&&!MAIN.some(r=>r.mundo===w&&r.orden>R.orden), sigM=MUNDOS[w+1];
-    if(subio)lluvia(ganado>=40?36:20);
+    if(subio)lluvia(ganado>=40?36:20);if(subio&&!SECR)AVANZO=true;
     V.innerHTML=`${hero("guia",subio?"salta":"")}
       <div><div class="eyebrow">${!subio?"Repaso terminado":SECR?"Nivel secreto completado":"Reto del día completado"}</div><h1>${finMundo?"Mundo superado":"Uno más pelado"}</h1></div>
       ${subio?`<div class="premio"><div><b>+${ganado}</b>mandarinas</div>${SECR?`<div><b>${P.mandarinas}</b>en tu saldo</div>`:`<div><b>${P.racha}</b>${P.racha===1?"día de racha":"días de racha"}</div>`}</div>`
